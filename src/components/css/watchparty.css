@@ -1,0 +1,114 @@
+.link_submit {
+  width: 10%;
+  height: 30%;
+  font-size: 2.5em;
+  font-weight: bold;
+  padding: 1rem;
+  margin-top: 40px;
+
+  margin-left: 2%;
+  background-color: #d0d4ff;
+  border-style: outset;
+  border-radius: 10px;
+
+
+}
+
+.link_leave {
+  width: 20%;
+  height: 30%;
+  font-size: 2.5em;
+  font-weight: bold;
+  padding: 1rem;
+  margin-top: 40px;
+
+  margin-left: 2%;
+  background-color: #d0d4ff;
+  border-style: outset;
+  border-radius: 10px;
+
+
+}
+
+.link_leave:hover {
+  background-color: #6f79cf;
+  font-weight: bold;
+  color: #ffffff;
+  transition-duration: 300ms;
+}
+
+.link_submit:hover {
+  background-color: #6f79cf;
+  font-weight: bold;
+  color: #ffffff;
+  transition-duration: 300ms;
+
+}
+
+.partytitle_text {
+  width: 70%;
+  color: #ffffff;
+  display: flex;
+  margin-left: 0.7%;
+
+
+}
+
+.party_videobox {
+  display: flex;
+  color: #ffffff;
+  font-size: 30px;
+  justify-content: center;
+  font-weight: bold;
+  margin-left: 2%;
+}
+
+.party_title {
+  display: flex;
+  color: #ffffff;
+  font-size: 25px;
+  justify-content: center;
+
+}
+
+.links {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: -30px;
+}
+
+.link_box {
+  width: 60%;
+  height: 20%;
+  font-size: 2.5em;
+  font-weight: bold;
+  padding: 1rem;
+  margin-top: 40px;
+  margin-left: 2%;
+  background-color: #d0d4ff;
+  border-style: outset;
+  border-radius: 10px;
+}
+
+.users {
+  display: flex;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  justify-content: center;
+}
+
+.player {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 2%;
+
+}
+
+.user_list {
+  display: flex;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  justify-content: center;
+}

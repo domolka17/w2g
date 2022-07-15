@@ -1,0 +1,11 @@
+CRUCIAL:
+    - seite als Github oder Gitlab page hosten (für abgabe wichtig) (gitlab würde sich anbieten weil es bereits dort ist)
+
+Super important:
+    - display lists (raum und user im raum)
+    - synchonisierung der videos
+
+important but not severe:
+    - mobile and tablett version
+
+
