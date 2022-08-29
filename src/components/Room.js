@@ -33,7 +33,7 @@ const Room = () => {
   }
 
   const [data, getData] = useState([])
-  const URL = 'https://gruppe18.toni-barth.com/rooms/';
+  const URL = 'https://gruppe13.toni-barth.com/rooms/';
 
   useEffect(() => {
     fetchData()

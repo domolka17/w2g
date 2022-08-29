@@ -13,11 +13,9 @@ import React from 'react'
 
 
 // collection of funktions related to the controll of a room
-
+const url = 'https://gruppe13.toni-barth.com/rooms/'
 
     export const createRoom =() => {
-        const url = 'https://gruppe18.toni-barth.com/rooms/'
-
         //put request, creation of room
         fetch(url, {
             method:'POST' ,
@@ -32,7 +30,7 @@ import React from 'react'
     }
     export const joinRoom = (name) => {
         // get roomname and user id put them in url
-        fetch('https://gruppe18.toni-barth.com/rooms/'+ name +'/users', {
+        fetch(url + name +'/users', {
             method:'PUT',
             headers:{"Content-Type": "application/json"},
             body:  JSON.stringify({"user": sessionStorage.getItem('id')})
@@ -41,7 +39,7 @@ import React from 'react'
     }
     export const leaveRoom = (roomname) => {
         // delete user from room
-        fetch('https://gruppe18.toni-barth.com/rooms/'+roomname+'/users', {
+        fetch(url +roomname+'/users', {
           method:'DELETE',
           headers:{"Content-Type": "application/json"},
           body:  JSON.stringify({"user": sessionStorage.getItem('id')})
@@ -50,7 +48,7 @@ import React from 'react'
         sessionStorage.removeItem('roomname');
     }
     export const displayUserlist = (name) => {
-        fetch('https://gruppe18.toni-barth.com/rooms/'+name+'/users', {
+        fetch(url+name+'/users', {
             method:'GET'
         }).then(  respons =>  {return respons.json()}).then(data => {console.log(data)}) // TODO
     }

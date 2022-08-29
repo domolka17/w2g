@@ -89,7 +89,7 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 
 	//_____________________________________________________________________________________________
 	const [data, getData] = useState([])
-	const URL = 'https://gruppe18.toni-barth.com/rooms/' + roomname + '/users';
+	const URL = 'https://gruppe13.toni-barth.com/rooms/' + roomname + '/users';
 
 	useEffect(() => {
 		fetchData()
