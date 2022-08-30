@@ -61,6 +61,8 @@ const  Dev = () => {
 		const id = createUser('dev')
 	}
 
+	
+
 
 	return (
 		<>
@@ -74,6 +76,9 @@ const  Dev = () => {
 						</div>
 						<div class="zwei">
 							<button onClick={event => handleButtonDELETEROOM()} className="host_button">DELETE ALL ROOMS</button>
+						</div>
+						<div class="zwei">
+							<button onClick={event => rout()} className="host_button">Routtest</button>
 						</div>
 					
 				</div>

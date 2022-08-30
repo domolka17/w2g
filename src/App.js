@@ -12,6 +12,7 @@ import Watchparty from "./components/Watchparty";
 import { deleteUser } from "./components/Controller/UserController";
 import { leaveRoom } from "./components/Controller/RoomController";
 import UserCreatrSide from "./components/UserCreateSide";
+import { NotFound } from "./components/NotFound";
 
 
 function App() {
@@ -31,6 +32,7 @@ const alertUser = (event) => {
   event.returnValue = ''
 }
 const logOut = (id, roomname)=>{
+
   leaveRoom(roomname)
   deleteUser(id)
   sessionStorage.clear()
@@ -47,6 +49,7 @@ const logOut = (id, roomname)=>{
         <Route path="/Host" element={<Host/>}/>
         <Route path="/Watchparty" element={<Watchparty/>}/>
         <Route path="/UserCreateSide" element={<UserCreatrSide/>}/>
+        <Route path="*" element={<NotFound/>}/>                             // routes any unknown location to Not found 
       </Routes>
     </Router>
   );
