@@ -25,17 +25,20 @@ function App() {
     }
 })
 const handleTabClosing = () => {
-  logOut(sessionStorage.getItem('id'), sessionStorage.getItem('name'))
+  logOut(sessionStorage.getItem('id'))
 }
 const alertUser = (event) => {
   event.preventDefault()
   event.returnValue = ''
+  // not lösung, nutzer werden sonst nie gelöscht bei verlassen der Seite
+  leaveRoom( sessionStorage.getItem('roomname'))
+  logOut(sessionStorage.getItem('id'))
 }
-const logOut = (id, roomname)=>{
-
-  leaveRoom(roomname)
-  deleteUser(id)
-  sessionStorage.clear()
+const logOut = (id)=>{
+  const url = 'https://gruppe13.toni-barth.com/users/'
+  fetch(url+ id, {
+    method:'DELETE', headers:{"Content-Type": "application/json"}
+  }).then(sessionStorage.clear())
 }
   return (
     <Router>
