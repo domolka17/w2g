@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {  createUser } from "./Controller/UserController";
 import "./css/host.css";
 import {useNavigate} from "react-router-dom"
-import { joinRoom } from './Controller/RoomController';
+import { createRoom, joinRoom } from './Controller/RoomController';
 
 const UserCreatrSide = () => {
     const [inp, setInput] = useState('')
@@ -21,12 +21,15 @@ const UserCreatrSide = () => {
             }, 500)
         }
         else{
-            navigate('/index')
+            setTimeout(function () {
+                createRoom()
+                setTimeout(function () {
+                navigate('/Watchparty/'+sessionStorage.getItem('roomname'))
+                }, 500)
+                }, 200)
         }
     }
-   
-		
-	
+
 
 
   return (
