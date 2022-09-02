@@ -50,7 +50,7 @@ const logOut = (id)=>{
         <Route path='/Help' element={<Help />} />
         <Route path="/Room" element={<Room/>}/>
         <Route path="/Host" element={<Host/>}/>
-        <Route path="/Watchparty" element={<Watchparty/>}/>
+        <Route path="/Watchparty/:roomid" element={<Watchparty/>}/>
         <Route path="/UserCreateSide" element={<UserCreatrSide/>}/>
         <Route path="*" element={<NotFound/>}/>                             // routes any unknown location to Not found 
       </Routes>

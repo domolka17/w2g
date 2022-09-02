@@ -26,7 +26,7 @@ const url = 'https://gruppe13.toni-barth.com/rooms/'
            return response.json()})
         .then (data => { joinRoom(data.name)
         }) 
-        return null
+        return 
     }
     export const joinRoom = (name) => {
         // get roomname and user id put them in url

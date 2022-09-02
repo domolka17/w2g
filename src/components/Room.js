@@ -20,13 +20,13 @@ const Room = () => {
   }
   const handleButton2 = (roomname) => {        // gives button its funktion
     if (sessionStorage.getItem('id') == null) {
-        navigate('/UserCreateSide')
-
+      window.sessionStorage.setItem("redirect", roomname)
+      navigate('/UserCreateSide')
     }
     else {
     joinRoom(roomname)
       setTimeout(function () {
-        navigate('/Watchparty')
+        navigate('/Watchparty/'+roomname)
       }, 500)
     }
   }
