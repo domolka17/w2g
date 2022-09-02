@@ -1,6 +1,5 @@
 import React from 'react'
 import "./css/room.css";
-import useGetFetch from './fetch/useGetFetch'
 import { useNavigate } from "react-router-dom"
 import { createRoom, joinRoom } from "./Controller/RoomController";
 import { useEffect, useState } from "react";

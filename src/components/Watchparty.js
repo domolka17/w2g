@@ -40,11 +40,17 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 
 	// constantly snyc
 	useEffect(() => {
+		window.addEventListener('unload', handleTabClosing) // user leaves room without using the button
 		const interval = setInterval(() => {
 			sync()
 		}, 3000);
 		return () => clearInterval(interval);
 	}, []);
+
+	//handletabclosing
+	const handleTabClosing = () => {
+		leaveRoom(sessionStorage.getItem('roomname'))
+	  }
 
 	// buttons
 	const handleButton = () => {		// gives button its funktion leave, submit video
