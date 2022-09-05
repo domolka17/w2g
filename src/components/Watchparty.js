@@ -5,6 +5,8 @@ import { joinRoom, leaveRoom } from './Controller/RoomController';
 import ReactPlayer from 'react-player';
 import { getVideo, getVideoPos, getVideoStat, postVideo, postVideoPos, postVideoStat } from './Controller/VideoController';
 import { useParams } from 'react-router-dom';
+import Chat from './Chat';
+
 
 const Watchparty = () => {		// room siplay with userlist of rpp
 	const firstUrl = 'https://www.youtube.com/watch?v=Q0B5dLHDQ2w'
@@ -38,6 +40,7 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 		checkInvite()
 		const interval = setInterval(() => {
 			sync()
+			fetchData()
 		}, 3000);
 		return () => clearInterval(interval);
 	}, []);
@@ -62,6 +65,7 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 		setUrl(link)
 		postVideo(link)
 		console.log(url)
+		console.log(window.location.href)
 	}
 	const handleButton2 = () => {		// gives button its funktion, leave Room
 		leaveRoom(sessionStorage.getItem('roomname'))
@@ -111,7 +115,6 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 		fetch(URL)
 			.then((res) =>
 				res.json())
-
 			.then((response) => {
 				console.log(response.users);
 				getData(response.users);
@@ -157,7 +160,8 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 						<button onClick={event => handleButton()} className="link_submit">Starten	</button>
 						<button onClick={event => handleButton2()} className="link_leave">Raum Verlassen</button>
 					</div>
-
+					
+				
 				</div>
 			</body>
 		</>

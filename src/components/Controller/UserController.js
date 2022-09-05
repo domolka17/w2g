@@ -1,8 +1,6 @@
 /*
-
  create user should be done
  delete user should be done
-TODO get user state or figure out when user closes browser or leaves site
 */
 
 

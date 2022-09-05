@@ -9,11 +9,3 @@ important but not severe:
     - mobile and tablett version
 
 
-//  gedanken zum merken
-useParams, liest aus der url aus, kann man noch genauer deklarieren siehe letztes vid mit /Watchparty/:roomname
-
-ambesten bei check roomname speichern 
-bei creation raumname  abfragen und den dann direkt joinken
-
-habe motivation Zukunfts Domenik !!
-grüße Vergangenheits Domenik xoxo!!!
