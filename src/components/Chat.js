@@ -3,7 +3,7 @@
  *  TODO manages Chat
  *  TODO uses get and posts
  *  TODO exports it selfe, needs css style
- *  TODO writing massage and submit it
+ *  TODO writing message and submit it
  * 
  */
 
@@ -12,9 +12,9 @@ import { chatGet, chatPost } from './Controller/ChatController'
 
 
 const Chat = () => {
-    const [massage, setMassage] = useState('')
-    const [chat,setChat] = useState([])
-    const [currentChat,setCurrentChat] = useState([])
+    const [message, setMessage] = useState('')
+    const [data, getData] = useState([])
+   
 
 
 
@@ -26,41 +26,41 @@ const Chat = () => {
 		return () => clearInterval(interval);
 	}, []);
 
-    // submit massage button
+    // submit message button
     const handleButton = ()=>{
-        chatPost(massage, sessionStorage.getItem('roomname'))
-        // after posting massage, emptys massage-input
+        chatPost(message, sessionStorage.getItem('roomname'))
+        // after posting message, emptys message-input
         setTimeout(function () {
-            setMassage('')
+            setMessage('')
         }, 500)
     }
 
-    
-    
     const handleButton2 = ()=>{
-        sessionStorage.setItem("roomname", "better-adamant-scooter")
+        sessionStorage.setItem("roomname", "abnormal-nutty-alarm")
     }
 
     const handleChat=()=>{
         if(sessionStorage.getItem('roomname')!=null)
         {
-            setChat(chatGet(sessionStorage.getItem('roomname')))
+            getData(chatGet(sessionStorage.getItem('roomname')))
         }
     }
     
   return (
     <div className='ChatBox'>
-        <div className='MassageBox'>
-           {chat.map((chat)=> (
-            <tr key={chat.time}>
-                <td>{chat.text}</td>
-            </tr>
-           ))}
+        <div className='messageBox'>
+            <p class="messageList">
+			    {data.map((messages, time) => (
+				    <tr key={time}>
+					    <td>{messages.text}</td>
+				    </tr>
+			    ))}
+			</p>
         </div>
         <div className='ChatSubmitbar'>
-            <input type="text"  class="submit" placeholder="Narricht schreiben" value={massage} onChange={(change) => setMassage(change.target.value)}></input>
-            <button onClick={event => handleButton()} className="massage_submit">Send</button>
-            <button onClick={event => handleButton2()} className="massage_submit">delete later</button>
+            <input type="text"  class="submit" placeholder="Narricht schreiben" value={message} onChange={(change) => setMessage(change.target.value)}></input>
+            <button onClick={event => handleButton()} className="message_submit">Send</button>
+            <button onClick={event => handleButton2()} className="message_submit">delete later</button>
         </div>
     </div>
     

@@ -144,15 +144,9 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 							onPause={() => handlePause()}
 							onBuffer={() => console.log('onBuffer')}
 							onSeek={position}
-						/>
+							/>
 						<p class="users">Nutzer in dieser Watchparty:</p>
-							<p class="user_list">
-								{data.map((users, name) => (
-									<tr key={name}>
-										<td>{users.name}</td>
-									</tr>
-								))}
-							</p>
+							
 						
 					</div>
 					<div class="links">
@@ -161,6 +155,10 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 						<button onClick={event => handleButton2()} className="link_leave">Raum Verlassen</button>
 					</div>
 					
+					<div class="chat">
+						<Chat/>
+
+					</div>
 				
 				</div>
 			</body>
