@@ -13,15 +13,15 @@ import { chatGet, chatPost } from './Controller/ChatController'
 
 const Chat = () => {
     const [message, setMessage] = useState('')
-    const [data, getData] = useState([])
-   
+    const [chatFeed, getFeed] = useState([])
+    const [chatData, getChat]= useState([])
 
 
 
     useEffect(() => {
         const interval = setInterval(() => {
             handleChat()
-            console.log('a')
+            console.log('Update Chat')
 		}, 3000);
 		return () => clearInterval(interval);
 	}, []);
@@ -35,14 +35,13 @@ const Chat = () => {
         }, 500)
     }
 
-    const handleButton2 = ()=>{
-        sessionStorage.setItem("roomname", "abnormal-nutty-alarm")
-    }
+
 
     const handleChat=()=>{
+        getChat(chatGet(sessionStorage.getItem('roomname')))
         if(sessionStorage.getItem('roomname')!=null)
         {
-            getData(chatGet(sessionStorage.getItem('roomname')))
+            if(chatData!=null){getFeed(chatData)}
         }
     }
     
@@ -50,9 +49,9 @@ const Chat = () => {
     <div className='ChatBox'>
         <div className='messageBox'>
             <p class="messageList">
-			    {data.map((messages, time) => (
+			    {chatFeed.map((chatFeed, time) => (
 				    <tr key={time}>
-					    <td>{messages.text}</td>
+					    <td>{chatFeed.text}</td>
 				    </tr>
 			    ))}
 			</p>
@@ -60,7 +59,6 @@ const Chat = () => {
         <div className='ChatSubmitbar'>
             <input type="text"  class="submit" placeholder="Narricht schreiben" value={message} onChange={(change) => setMessage(change.target.value)}></input>
             <button onClick={event => handleButton()} className="message_submit">Send</button>
-            <button onClick={event => handleButton2()} className="message_submit">delete later</button>
         </div>
     </div>
     

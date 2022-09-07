@@ -14,7 +14,10 @@ const url = 'https://gruppe13.toni-barth.com/rooms/'
         fetch('https://gruppe13.toni-barth.com/rooms/'+roomname+'/chat', {
             method:'GET'
         }).then((res) =>
-        res.json()).then((res)=>data=res.messages)
+        res.json()).then((response)=> {
+            console.log(response.messages);
+            data= response.messages
+        })
         return data
     }
 
