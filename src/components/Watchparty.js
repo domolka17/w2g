@@ -147,9 +147,9 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 							/>
 						<p class="users">Nutzer in dieser Watchparty:</p>
 							<p class="user_list">
-								{data.map((users, name) => (
-									<tr key={name}>
-										<td>{users.name}</td>
+								{data.map((user) => (
+									<tr key={user.id}>
+										<td>{user.name}</td>
 									</tr>
 								))}
 							</p>

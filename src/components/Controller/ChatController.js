@@ -8,19 +8,6 @@ import React from 'react'
 
 const url = 'https://gruppe13.toni-barth.com/rooms/'
 
-    export const chatGet = (roomname) => {
-        var data 
-
-        fetch('https://gruppe13.toni-barth.com/rooms/'+roomname+'/chat', {
-            method:'GET'
-        }).then((res) =>
-        res.json()).then((response)=> {
-            console.log(response.messages);
-            data= response.messages
-        })
-        return data
-    }
-
     export const chatPost = (data, roomname) => {
         fetch(url+roomname+'/chat', {
             method:'PUT',
