@@ -20,11 +20,11 @@ const Room = () => {
   }
   const handleButton2 = (roomname) => {        // gives button its funktion
     if (sessionStorage.getItem('id') == null) {
-        navigate('/UserCreateSide')
+      navigate('/UserCreateSide')
 
     }
     else {
-    joinRoom(roomname)
+      joinRoom(roomname)
       setTimeout(function () {
         navigate('/Watchparty')
       }, 500)
@@ -55,25 +55,28 @@ const Room = () => {
   return (
     <body>
       <div>
-        <div class="title_text">
-          <h1 class="title">Treten Sie einer vorhandenen Watchparty bei</h1>
+        <div class="room_title_text">
+          <h1 class="room_title">Treten Sie einer vorhandenen Watchparty bei</h1>
         </div>
         <div >
-          <h3 class="h3">Vorhandene Räume</h3>
+          <h3 class="room_h3">Vorhandene Räume</h3>
           <p class="roomlist">
             {data.map((rooms, name) => (
               <tr key={name}>
-                <button onClick={event =>  handleButton2(rooms.name)} className="room_button">{rooms.name}</button>
+                <button onClick={event => handleButton2(rooms.name)} className="roomlink_button">{rooms.name}</button>
               </tr>
             ))}
           </p>
         </div>
         <div>
-        
+
         </div>
-        <div class="welcome_text">
-          <p class="textbox">Oder vielleicht doch eine eigene Watchparty erstellen?</p>
-          <button onClick={event => handleButton()} className="homescreen_buttons">Einen neuen Raum erstellen</button>
+        <div>
+          <p class="room_text">Oder vielleicht doch eine eigene Watchparty erstellen?</p>
+        </div>
+
+        <div class="room_buttons_container">
+          <button onClick={event => handleButton()} className="room_buttons">Einen neuen Raum erstellen</button>
         </div>
       </div>
     </body>

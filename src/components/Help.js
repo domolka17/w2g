@@ -6,8 +6,8 @@ const Help = () => {
 	return (
 		<body>
 			<div>
-				<div class="title_text">
-					<h1 class="title">So bedienen Sie unseren Webplayer:</h1>
+				<div class="help_title_text">
+					<h1 class="help_title">So bedienen Sie unseren Webplayer:</h1>
 				</div>
 				<div>
 					<ul class="controls">

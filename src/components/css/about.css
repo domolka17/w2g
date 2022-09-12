@@ -1,4 +1,4 @@
-.homescreen_buttons{
+/*.homescreen_buttons{
   width: 40%;
   height: 30%;
   font-size: 2.5em;
@@ -21,8 +21,20 @@
   transition-duration: 300ms;
  
 }
+.about_welcome_text{
+  width: 100%;
+  display:flex;
+  justify-content: center;
+  
+}
+.about_textbox{
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: bold;
+}
 
-.title_text{
+*/
+.about_title_text{
     width: 100%;
     color: #ffffff;
     display: flex;
@@ -30,19 +42,7 @@
 
     
 }
-.welcome_text{
-  width: 100%;
-  display:flex;
-  justify-content: center;
-  
-}
-.textbox{
-  display: flex;
-  color: #ffffff;
-  font-size: 30px;
-  justify-content: center;
-}
-.title{
+.about_title{
   display: flex;
   color: #ffffff;
   font-size: 50px;

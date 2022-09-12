@@ -26,16 +26,18 @@ const Home = () => {
 
 	return (
 		<>
-			<body class="home">
+			<body >
 				<div>
 					<div class="title_text">
-						<h1 class="title">Watch YouTube Together with Friends!</h1>
+						<p class="title">Watch YouTube Together with Friends!</p>
 					</div>
+
 					<div class="welcome_text">
-						<p class="textbox">Genieße barrierefreie Unterhaltung zusammen mit deinen Freunden bei Watch2Gether der Hochschule Anhalt dank:</p>
+						<p class="text">Genieße barrierefreie Unterhaltung zusammen mit Freunden bei Watch2Gether der Hochschule Anhalt dank:</p>
 					</div>
-					<div>
-						<p class="textbox">
+
+					<div class="textbox">
+						<p>
 							<ul>
 								<li>
 									Gänzliche Bedienbarkeit via Tastatur
@@ -52,10 +54,12 @@ const Home = () => {
 							</ul>
 						</p>
 					</div>
-					<div >
-						<button onClick={event => handleButton1() } className="homescreen_buttons">Einen neuen Raum erstellen</button>
-						<button onClick={event => handleButton2()} className="homescreen_buttons">Einen vorhanden Raum beitreten</button>
+
+					<div class="buttonContainer">
+						<button onClick={event => handleButton1() } class="homescreen_buttons">Einen Raum erstellen</button>
+						<button onClick={event => handleButton2()} class="homescreen_buttons">Einen Raum beitreten</button>
 					</div>
+					
 				</div>
 			</body>
 		</>
