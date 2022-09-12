@@ -41,13 +41,14 @@
 .help_title{
   display: flex;
   color: #ffffff;
-  font-size: 50px;
+  font-size: 3.125rem;
   justify-content: center;
+  margin: 1.875rem;
 }
 .controls{
   list-style: none;
   color: #ffffff;
-  font-size: 30px;
+  font-size: 1.875rem;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -55,4 +56,35 @@
 }
 .li{
   margin-top: 8px;
+}
+
+@media screen and (max-width: 960px) {
+  .help_title_text{
+    width: 100%;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+
+    
+}
+
+.help_title{
+  display: flex;
+  color: #ffffff;
+  font-size: 2.125rem;
+  justify-content: center;
+  margin: 1.875rem;
+}
+.controls{
+  list-style: none;
+  color: #ffffff;
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  
+}
+.li{
+  margin-top: 8px;
+}
 }

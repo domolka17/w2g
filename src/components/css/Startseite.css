@@ -34,6 +34,7 @@
   color: #ffffff;
   font-size: 3.125rem;
   font-weight: bolder;
+  margin: 1.875rem;
 }
 
 .welcome_text {
@@ -49,6 +50,7 @@
   display: flex;
   justify-content: center;
   align-content: center;
+  margin: 1.875rem;
 }
 
 .textbox {
@@ -57,6 +59,7 @@
   font-size: 1.875rem;
   justify-content: center;
   font-weight: bold;
+  margin: 1.875rem;
 }
 
 
@@ -68,11 +71,12 @@
     display: flex;
     align-content: center;
     justify-content: center;
+    
   }
   
   .homescreen_buttons {
     width: 100%;
-    font-size: 1.875rem;
+    font-size: 1.3rem;
     font-weight: bold;
     background-color: #d0d4ff;
     border-style: outset;
@@ -96,9 +100,10 @@
   }
   
   .title {
-    width: 100%;
+
     color: #ffffff;
-    font-size: 3.125rem;
+    font-size: 2.125rem;
+    margin: 1.875rem;
   }
 
   .welcome_text {
@@ -109,17 +114,19 @@
   }
 
   .text {
-    width: 100%;
+    
     color: #ffffff;
-    font-size: 1.875rem;
+    font-size: 1.3rem;
+    margin: 1.875rem;
   }
 
   .textbox {
     display: flex;
     color: #ffffff;
-    font-size: 1.875rem;
+    font-size: 1.3rem;
     justify-content: center;
     font-weight: bold;
+    margin: 1.3rem;
   }
 
 

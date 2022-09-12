@@ -1,73 +1,84 @@
-.host_button{
-    width: 61.9%;
-    height: 20%;
-    font-size: 2.5em;
-    font-weight: bold;
-    padding: 1rem;
-    margin-top: 40px;
-    margin-bottom: 30px;
-    margin-left: 7%;
-    background-color: #d0d4ff;
-    border-style: outset;
-    border-radius: 10px;
-  
-    
-  }
-  
-  .host_button:hover {
-    background-color: #6f79cf;
-    font-weight: bold;
-    color: #ffffff;
-    transition-duration: 300ms;
-   
-  }
-  
-  .hosttitle_text{
-      width: 100%;
-      color: #ffffff;
-      display: flex;
-      justify-content: center;
-  
-      
-  }
-  .host_text{
-    width: 100%;
-    display:flex;
-    justify-content: center;
-    
-  }
-  .host_textbox{
-    display: flex;
-    color: #ffffff;
-    font-size: 30px;
-    justify-content: center;
-    font-weight: bold;
-  }
-  .host title{
-    display: flex;
-    color: #ffffff;
-    font-size: 50px;
-    justify-content: center;
-  }
-  .input_box{
-    width: 60%;
-    height: 20%;
-    font-size: 2.5em;
-    font-weight: bold;
-    padding: 1rem;
-    margin-top: 40px;
-    margin-bottom: 30px;
-    margin-left: 7%;
-    background-color: #d0d4ff;
-    border-style: outset;
-    border-radius: 10px;
+.host_button {
+  width: 70%;
+  height: 5rem;
+  font-size: 1.875rem;
+  font-weight: bold;
+  background-color: #d0d4ff;
+  border-style: outset;
+  border-radius: 10px;
 
+
+}
+
+.host_button:hover {
+  background-color: #6f79cf;
+  font-weight: bold;
+  color: #ffffff;
+  transition-duration: 300ms;
+
+}
+
+.hosttitle_text {
+  width: 100%;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+
+
+}
+
+.host_text {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+}
+
+.host_textbox {
+  display: flex;
+  color: #ffffff;
+  font-size: 30px;
+  justify-content: center;
+  font-weight: bold;
+  margin: 1.875rem;
+}
+
+.host title {
+  display: flex;
+  color: #ffffff;
+  font-size: 50px;
+  justify-content: center;
+  margin: 1.875rem;
+}
+
+.input_box {
+  width: 70%;
+  height: 1rem;
+  font-size: 1.875rem;
+  font-weight: bold;
+  padding: 1.875rem;
+  background-color: #d0d4ff;
+  border-style: outset;
+  border-radius: 10px;
+  margin: 1.875rem;
+
+}
+
+.eins {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.zwei {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+@media (max-width: 940px) {
+  .input_box {
+    font-size: 1.2rem;
+    font-weight: bold;
   }
-  .eins{
-    display: flex;
-    justify-content: center;
-  }
-  .zwei{
-    display: flex;
-    justify-content: center;
-  }
+}

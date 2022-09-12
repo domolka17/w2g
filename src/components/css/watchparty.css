@@ -1,32 +1,24 @@
 .link_submit {
-  width: 10%;
-  height: 30%;
-  font-size: 2.5em;
+  width: 8%;
+  height: 3.4rem;
+  font-size: 1.875rem;
   font-weight: bold;
-  padding: 1rem;
-  margin-top: 40px;
-
-  margin-left: 2%;
   background-color: #d0d4ff;
   border-style: outset;
   border-radius: 10px;
-
-
+ 
+  
 }
 
 .link_leave {
-  width: 20%;
-  height: 30%;
-  font-size: 2.5em;
+  width: 15%;
+  height: 3.4rem;
+  font-size: 1.875rem;
   font-weight: bold;
-  padding: 1rem;
-  margin-top: 40px;
-
-  margin-left: 2%;
   background-color: #d0d4ff;
   border-style: outset;
   border-radius: 10px;
-
+  
 
 }
 
@@ -73,18 +65,17 @@
 
 .links {
   display: flex;
-  justify-content: flex-start;
-  margin-top: -30px;
+  justify-content: space-around;
+  align-content: center;
+  margin-top: 0.5rem;
+  margin-left: 0.3rem;
 }
 
 .link_box {
-  width: 60%;
-  height: 20%;
-  font-size: 2.5em;
+  width: 67%;
+  height: 3rem;
+  font-size: 1.3rem;
   font-weight: bold;
-  padding: 1rem;
-  margin-top: 40px;
-  margin-left: 2%;
   background-color: #d0d4ff;
   border-style: outset;
   border-radius: 10px;
@@ -96,6 +87,7 @@
   font-size: 20px;
   font-weight: bold;
   justify-content: center;
+
 }
 
 .player {
