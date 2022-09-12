@@ -59,10 +59,10 @@ a {
   justify-content: space-between;
   padding: 20px;
   background-color: #5860a8;
-  color: #fff;
+  color: #ffffff;
  }
  .nav-links a {
-  color: #fff;
+  color: #ffffff;
  }
 
  .logo {
@@ -104,7 +104,7 @@ input[type=checkbox]{
  .menu { 
   display:none;
   position: absolute;
-  background-color:teal;
+  background-color:#5860a8;
   right: 0;
   left: 0;
   text-align: center;
@@ -112,7 +112,7 @@ input[type=checkbox]{
  }
  .menu li:hover {
   display: inline-block;
-  background-color:#4c9e9e;
+  background-color:#d0d4ff;
   transition: 0.3s ease;
  }
  .menu li + li {
@@ -130,7 +130,7 @@ input[type=checkbox]{
   transform: translateX(35%);
  }
  .dropdown li:hover {
-  background-color: #4c9e9e;
+  background-color: #d0d4ff;
  }
 }
 
