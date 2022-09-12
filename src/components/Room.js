@@ -20,13 +20,8 @@ const Room = () => {
   }
   const handleButton2 = (roomname) => {        // gives button its funktion
     if (sessionStorage.getItem('id') == null) {
-<<<<<<< HEAD
-      navigate('/UserCreateSide')
-
-=======
       window.sessionStorage.setItem("redirect", roomname)
       navigate('/UserCreateSide')
->>>>>>> 867bc1ba958c43d116ab286b9b93eaf4114f7807
     }
     else {
       joinRoom(roomname)
