@@ -1,69 +1,78 @@
 import React, { useState, useEffect } from 'react';
 import "./css/watchparty.css";
-import { useNavigate } from "react-router-dom"
-import { leaveRoom } from './Controller/RoomController';
+import { Route, useNavigate } from "react-router-dom"
+import { joinRoom, leaveRoom } from './Controller/RoomController';
 import ReactPlayer from 'react-player';
-import { getVideo, getVideoStat, postVideo, postVideoPos, postVideoStat } from './Controller/VideoController';
+import { getVideo, getVideoPos, getVideoStat, postVideo, postVideoPos, postVideoStat } from './Controller/VideoController';
+import { useParams } from 'react-router-dom';
+import Chat from './Chat';
 
 
 const Watchparty = () => {		// room siplay with userlist of rpp
 	const firstUrl = 'https://www.youtube.com/watch?v=Q0B5dLHDQ2w'
 	const [link, setLink] = useState('')
-
+	const {roomid} = useParams()
 	const navigate = useNavigate()
 	const unsername = sessionStorage.getItem('name')
 	const id = sessionStorage.getItem('id')
 	const roomname = sessionStorage.getItem('roomname')
 	const [first, setFirst] = useState(true)
-		;
 	//player stats
 	const [url, setUrl] = useState(null)
 	const [playing, setPlaying] = useState(false)
 	const [controls, setControls] = useState(true)
+	const [position, setPosition] = useState(0)
 
-	//handler
-
+	//handlers
 	const handlePlay = () => {
 		console.log('onPlay')
 
 		postVideoStat('playing')
 	}
-
 	const handlePause = () => {
 		console.log('onPause')
 		postVideoStat('paused')
 	}
-	const handleSeekChange = (e) => {
 
-		postVideoPos(parseFloat(e.target.value))
-	}
-
-	// constantly snyc
+	// constantly snyc once every 3 sekonds
 	useEffect(() => {
-		window.addEventListener('unload', handleTabClosing) // user leaves room without using the button
+		console.log("test check")
+		checkInvite()
 		const interval = setInterval(() => {
 			sync()
+			fetchData()
 		}, 3000);
 		return () => clearInterval(interval);
 	}, []);
+	//---------------------------------------
+	// on load check
+	const checkInvite=()=>{
+		if(sessionStorage.getItem('id')== null)
+		{
+			window.sessionStorage.setItem("redirect", roomid)
+			navigate('/UserCreateSide')
+		}
+		if(sessionStorage.getItem('id')!= null && sessionStorage.getItem('roomname')== null)
+		{
+			joinRoom(roomid)
+			navigate('/Watchparty/'+roomid)
+		}
+	}
 
-	//handletabclosing
-	const handleTabClosing = () => {
-		leaveRoom(sessionStorage.getItem('roomname'))
-	  }
-
+	//---------------------------------------
 	// buttons
 	const handleButton = () => {		// gives button its funktion leave, submit video
 		setUrl(link)
 		postVideo(link)
 		console.log(url)
+		console.log(window.location.href)
 	}
 	const handleButton2 = () => {		// gives button its funktion, leave Room
 		leaveRoom(sessionStorage.getItem('roomname'))
-
+		sessionStorage.removeItem('url')
+		sessionStorage.removeItem('stat')
 		navigate('/Room')
 	}
-
 	// syncs
 	// calls multiple functions, which shouls sync different aspects of the player
 	const sync = async () => {		//  the room should update, url, position
@@ -86,14 +95,14 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 		if (a == 'paused') {
 			setPlaying(false)
 		}
-
 	}
 	// gets the video Podition of the server
 	const comparePos = () => {
-
+		const b = getVideoPos()
 	}
 
 	//_____________________________________________________________________________________________
+	// user list
 	const [data, getData] = useState([])
 	const URL = 'https://gruppe13.toni-barth.com/rooms/' + roomname + '/users';
 
@@ -106,7 +115,6 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 		fetch(URL)
 			.then((res) =>
 				res.json())
-
 			.then((response) => {
 				console.log(response.users);
 				getData(response.users);
@@ -135,13 +143,13 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 							onPlay={() => handlePlay()}
 							onPause={() => handlePause()}
 							onBuffer={() => console.log('onBuffer')}
-							onSeek={e => { handleSeekChange(e) }}
-						/>
+							onSeek={position}
+							/>
 						<p class="users">Nutzer in dieser Watchparty:</p>
 							<p class="user_list">
-								{data.map((users, name) => (
-									<tr key={name}>
-										<td>{users.name}</td>
+								{data.map((user) => (
+									<tr key={user.id}>
+										<td>{user.name}</td>
 									</tr>
 								))}
 							</p>
@@ -152,7 +160,12 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 						<button onClick={event => handleButton()} className="link_submit">Starten	</button>
 						<button onClick={event => handleButton2()} className="link_leave">Raum Verlassen</button>
 					</div>
+					
+					<div class="chat">
+						<Chat/>
 
+					</div>
+				
 				</div>
 			</body>
 		</>

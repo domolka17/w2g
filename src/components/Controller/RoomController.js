@@ -1,12 +1,8 @@
 /*
-
  create Room should be done
  delete Room should be done
  join room should be done
  leave room should be done
-
-TODO Userlist, how to store and display
-TODO Roomlist, same problem as before
 */
 
 import React from 'react'
@@ -25,8 +21,7 @@ const url = 'https://gruppe13.toni-barth.com/rooms/'
         .then( response => {
            return response.json()})
         .then (data => { joinRoom(data.name)
-        }) 
-        return null
+        })  
     }
     export const joinRoom = (name) => {
         // get roomname and user id put them in url
@@ -47,10 +42,6 @@ const url = 'https://gruppe13.toni-barth.com/rooms/'
         //update theUser
         sessionStorage.removeItem('roomname');
     }
-    export const displayUserlist = (name) => {
-        fetch(url+name+'/users', {
-            method:'GET'
-        }).then(  respons =>  {return respons.json()}).then(data => {console.log(data)}) // TODO
-    }
+    
 
 

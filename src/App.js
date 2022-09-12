@@ -13,6 +13,7 @@ import { deleteUser } from "./components/Controller/UserController";
 import { leaveRoom } from "./components/Controller/RoomController";
 import UserCreatrSide from "./components/UserCreateSide";
 import { NotFound } from "./components/NotFound";
+import Chat from "./components/Chat";
 
 
 function App() {
@@ -50,8 +51,9 @@ const logOut = (id)=>{
         <Route path='/Help' element={<Help />} />
         <Route path="/Room" element={<Room/>}/>
         <Route path="/Host" element={<Host/>}/>
-        <Route path="/Watchparty" element={<Watchparty/>}/>
+        <Route path="/Watchparty/:roomid" element={<Watchparty/>}/>
         <Route path="/UserCreateSide" element={<UserCreatrSide/>}/>
+        <Route path="/Chat" element={<Chat/>}/>
         <Route path="*" element={<NotFound/>}/>                             // routes any unknown location to Not found 
       </Routes>
     </Router>

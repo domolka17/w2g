@@ -2,22 +2,34 @@ import React, { useState } from 'react'
 import {  createUser } from "./Controller/UserController";
 import "./css/host.css";
 import {useNavigate} from "react-router-dom"
+import { createRoom, joinRoom } from './Controller/RoomController';
 
 const UserCreatrSide = () => {
     const [inp, setInput] = useState('')
     const navigate = useNavigate()
+    const redirect = sessionStorage.getItem('redirect')
     const  handleButton =  () => {		// gives button its funktion
 		createUser(inp)
         if(sessionStorage.getItem('redirect')!=null){
-            const redirect = sessionStorage.getItem('redirect')
             sessionStorage.removeItem('redirect');
-            navigate(sessionStorage.getItem(redirect))
+            setTimeout(function () {
+                joinRoom(redirect)
+                }, 500)
+            
+            setTimeout(function () {
+            navigate('/Watchparty/'+redirect)
+            }, 500)
         }
         else{
-            navigate('/index')
+            setTimeout(function () {
+                createRoom()
+                setTimeout(function () {
+                navigate('/Watchparty/'+sessionStorage.getItem('roomname'))
+                }, 500)
+                }, 200)
         }
-		
-	}
+    }
+
 
 
   return (

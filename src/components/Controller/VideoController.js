@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 /**
-*  
- *   TODO video sync
+ * psot video  
+ * get video
+ * post / get status, pause, playing, position
  */
 const roomurl = 'https://gruppe13.toni-barth.com/rooms/'
   //  takes the url and sends it to the api, uses session userid and uses getVideo()  
