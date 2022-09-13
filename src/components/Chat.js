@@ -7,24 +7,27 @@
  * 
  */
 
-import React, { useEffect, useRef, useState } from 'react'
-import { chatGet, chatPost } from './Controller/ChatController'
+import React, { useEffect, useState } from 'react'
+import {  chatPost } from './Controller/ChatController'
 import "./css/Chat.css";
 
 
 const Chat = () => {
+    const [messageList, getListData]= useState([])
     const [message, setMessage] = useState('')
     const [chatData, getChatData]= useState([])
     const [userData, getUserData] = useState([])
-    const [messageList, getListData]= useState([])
+    const roomname = sessionStorage.getItem('roomname')
+    
     var listData = []
 
     useEffect(() => {
         const interval = setInterval(() => {
-            fetchChatData(sessionStorage.getItem('roomname'))
-            fetchUserData(sessionStorage.getItem('roomname'))
-            handleChat()
-            console.log('Update Chat')
+                fetchChatData(roomname)
+                fetchUserData(roomname)
+               
+
+                console.log('Update Chat')
 		}, 3000);
 		return () => clearInterval(interval);
 	}, []);
@@ -38,56 +41,52 @@ const Chat = () => {
         }, 500)
     }
 
-
-
-    const handleChat=()=>{    
-        console.log(userData)
-        console.log(chatData)
-        listData = convertChat()
-        console.log(listData) 
-    }
+    /** 
     const convertChat=()=>{
         
         var check = false
-        var temp = [ {autor: 'user', text:'item.text', time: 'item.time'}]
+        var temp = [{author: 'user', text:'item.text', time: 'item.time'}]
 
         chatData.forEach((item)=>{
-            // first find username
-            var user = userData.find((user)=>{
-                return user.id = item.userId
-            })
-            //check user name
-            if(user==null||user==undefined){
-                user= 'deletetUser'
-            }
-            //chek messageList length
-            if(temp==undefined){
-                temp[0]= {autor: user, text:item.text, time: item.time}
-            }
-            //case 1 messageList length = 0, chek if spot is taken by empty and if it is fill it
-            if(temp.length==1)
+            
+            //cheks if user is in room, if nut user.name= undefined
+            const user = userData.find((person=>{
+                return person.id == item.userId}))
+            console.log(user)
+            // as a standart
+            var username="deleted User"
+
+            // if user is in userlist / in room
+            if(user!=undefined)
             {
-                if(temp[0]== undefined){
-                    temp[0]= {autor: user, text:item.text, time: item.time}
+                username= user.name
+            }
+
+            // cleanes up the initial array + assings the first slot/ the scond if the first is a real message
+            if(temp.length==1){
+                if(temp[0].time=='item.time'){
+                    temp[0]= {author: username, text: item.text, time: item.time}
+                    const t = {author: username, text: item.text, time: item.time}
                 }
                 else{
-                    check=true
+                    temp[1]= {author: username, text: item.text, time: item.time}
+                    
                 }
+                //other cheks wont trigger for this.item if this is true
+                check= true
             }
-            //case 2 if length is greater zhan 0 or 0 is not empty fill the next space
-            if(temp.length>1||check==true){
-                check=false
-                temp[temp.length]= {autor: user, text:item.text, time: item.time}
+            // prosseses the other objects in chatData 
+            if(temp.length>1 && check==false)
+            {
+                temp[temp.length]= {author: username, text: item.text, time: item.time}
             }
+
+            check=false
+
         })
         console.log(temp)
-        const filtered = temp.filter((item)=>{
-            return item.text != 'item.text'
-        })
-        console.log(filtered)
-        return filtered
     }
-
+    */
     //____________________________
 
     const fetchChatData = (roomname) => {
@@ -96,7 +95,8 @@ const Chat = () => {
             method:'GET'
         }).then((res) =>
         res.json()).then((response)=> {
-            getChatData(response.messages)
+            getChatData(response.messages);
+            console.log(chatData)
         })
         
     }
@@ -107,6 +107,7 @@ const Chat = () => {
 				res.json())
 			.then((response) => {
 				getUserData(response.users);
+                console.log(userData)
 			})
 
 	}
@@ -114,11 +115,12 @@ const Chat = () => {
   return (
     <div className='ChatBox'>
         <div className='messageBox'>
-			{chatData.map( line => <ul className='massage'>{line.userId+': '+line.text}</ul>)}
+			{chatData.map( line => <ul className='massage' key={line.time}>{line.userId+': '+line.text}</ul>)}
         </div>
         <div className='ChatSubmitbar'>
             <input type="text"  class="submit" placeholder="Narricht schreiben" value={message} onChange={(change) => setMessage(change.target.value)}></input>
             <button onClick={event => handleButton()} className="message_submit">Send</button>
+       
         </div>
     </div>
     
