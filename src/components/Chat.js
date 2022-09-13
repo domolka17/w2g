@@ -54,9 +54,9 @@ const Chat = () => {
             setMessage('')
         }, 500)
     }
-    const getUserName=(spot)=>{
+    const getUserName=(userID)=>{
         const user = userData.find((item)=>{
-            return item.id == spot.userId
+            return item.id == userID.userId
         })
         let ret
         if(user== undefined){
