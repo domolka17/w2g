@@ -143,7 +143,7 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 							onPlay={() => handlePlay()}
 							onPause={() => handlePause()}
 							onBuffer={() => console.log('onBuffer')}
-							onSeek={position}
+							
 							/>
 						<p class="users">Nutzer in dieser Watchparty:</p>
 							<p class="user_list">

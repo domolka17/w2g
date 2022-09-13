@@ -25,12 +25,26 @@ const Chat = () => {
         const interval = setInterval(() => {
                 fetchChatData(roomname)
                 fetchUserData(roomname)
-               
-
                 console.log('Update Chat')
 		}, 3000);
 		return () => clearInterval(interval);
 	}, []);
+
+    useEffect(()=>{
+        console.log(chatData)
+        if(messageList.length<chatData.length){
+            let temp =[]
+            for(let i = 0; i<chatData.length; i++) {
+                const user = getUserName(chatData[i])
+                temp[i]=  { author: user, text: chatData[i].text, time: chatData[i].time}
+            }
+            getListData(temp)
+        }
+    }, [chatData]);
+
+    useEffect(()=>{
+        console.log(messageList)
+    }, [messageList]);
 
     // submit message button
     const handleButton = ()=>{
@@ -39,6 +53,20 @@ const Chat = () => {
         setTimeout(function () {
             setMessage('')
         }, 500)
+    }
+    const getUserName=(spot)=>{
+        const user = userData.find((item)=>{
+            return item.id == spot.userId
+        })
+        let ret
+        if(user== undefined){
+            console.log(user)
+            ret='deleted User'
+        }
+        else{
+            ret=user.name
+        }
+        return ret
     }
 
     /** 
@@ -96,7 +124,7 @@ const Chat = () => {
         }).then((res) =>
         res.json()).then((response)=> {
             getChatData(response.messages);
-            console.log(chatData)
+        
         })
         
     }
@@ -107,7 +135,7 @@ const Chat = () => {
 				res.json())
 			.then((response) => {
 				getUserData(response.users);
-                console.log(userData)
+                
 			})
 
 	}
@@ -115,7 +143,7 @@ const Chat = () => {
   return (
     <div className='ChatBox'>
         <div className='messageBox'>
-			{chatData.map( line => <ul className='massage' key={line.time}>{line.userId+': '+line.text}</ul>)}
+			{messageList.map( line => <ul className='massage' key={line.time}>{line.author+': '+line.text}</ul>)}
         </div>
         <div className='ChatSubmitbar'>
             <input type="text"  class="submit" placeholder="Narricht schreiben" value={message} onChange={(change) => setMessage(change.target.value)}></input>
