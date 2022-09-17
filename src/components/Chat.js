@@ -18,10 +18,10 @@ const Chat = () => {
     const [chatData, getChatData]= useState([])
     const [userData, getUserData] = useState([])
     const roomname = sessionStorage.getItem('roomname')
-    
-    var listData = []
 
     useEffect(() => {
+
+   
         const interval = setInterval(() => {
                 fetchChatData(roomname)
                 fetchUserData(roomname)
@@ -32,7 +32,7 @@ const Chat = () => {
 
     useEffect(()=>{
         console.log(chatData)
-        if(messageList.length<chatData.length){
+        if(chatData.length>0){
             let temp =[]
             for(let i = 0; i<chatData.length; i++) {
                 const user = getUserName(chatData[i])
@@ -45,6 +45,7 @@ const Chat = () => {
     useEffect(()=>{
         console.log(messageList)
     }, [messageList]);
+
 
     // submit message button
     const handleButton = ()=>{
