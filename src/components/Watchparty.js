@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./css/watchparty.css";
-import { Route, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { joinRoom, leaveRoom } from './Controller/RoomController';
 import ReactPlayer from 'react-player';
 import { getVideo, getVideoPos, getVideoStat, postVideo, postVideoPos, postVideoStat } from './Controller/VideoController';
@@ -9,14 +9,10 @@ import Chat from './Chat';
 
 
 const Watchparty = () => {		// room siplay with userlist of rpp
-	const firstUrl = 'https://www.youtube.com/watch?v=Q0B5dLHDQ2w'
 	const [link, setLink] = useState('')
 	const {roomid} = useParams()
 	const navigate = useNavigate()
-	const unsername = sessionStorage.getItem('name')
-	const id = sessionStorage.getItem('id')
 	const roomname = sessionStorage.getItem('roomname')
-	const [first, setFirst] = useState(true)
 	//player stats
 	const [url, setUrl] = useState(null)
 	const [playing, setPlaying] = useState(false)
@@ -106,9 +102,6 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 	const [data, getData] = useState([])
 	const URL = 'https://gruppe13.toni-barth.com/rooms/' + roomname + '/users';
 
-	useEffect(() => {
-		fetchData()
-	}, [])
 
 
 	const fetchData = () => {
@@ -143,7 +136,7 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 							onPlay={() => handlePlay()}
 							onPause={() => handlePause()}
 							onBuffer={() => console.log('onBuffer')}
-							onSeek={position}
+							
 							/>
 						<p class="users">Nutzer in dieser Watchparty:</p>
 							<p class="user_list">
