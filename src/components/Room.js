@@ -34,10 +34,13 @@ const Room = () => {
   const [data, getData] = useState([])
   const URL = 'https://gruppe13.toni-barth.com/rooms/';
 
-  useEffect(() => {
-    fetchData()
-  }, [])
 
+  useEffect(() => {
+		const interval = setInterval(() => {
+			fetchData()
+		}, 3000);
+		return () => clearInterval(interval);
+	}, []);
 
   const fetchData = () => {
     fetch(URL)

@@ -18,6 +18,7 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 	const [playing, setPlaying] = useState(false)
 	const [controls, setControls] = useState(true)
 	const [position, setPosition] = useState(0)
+	const [progress, setProgress] = useState({ played: 0, playedSeconds: 0, loaded: 0, loadedSeconds: 0 })
 
 	//handlers
 	const handlePlay = () => {
@@ -28,6 +29,12 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 	const handlePause = () => {
 		console.log('onPause')
 		postVideoStat('paused')
+	}
+
+	const handleProgress=(pro)=>{
+		console.log('pro')
+		setProgress(pro)
+		console.log(progress)
 	}
 
 	// constantly snyc once every 3 sekonds
@@ -67,6 +74,8 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 		sessionStorage.removeItem('stat')
 		navigate('/Room')
 	}
+
+
 	// syncs
 	// calls multiple functions, which shouls sync different aspects of the player
 	const sync = async () => {		//  the room should update, url, position
@@ -121,7 +130,37 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 						<h1 class="party_title">Raum: {roomname} </h1>
 						<button onClick={event => handleButton2()} className="link_leave">Raum Verlassen</button>
 					</div>
+<<<<<<< HEAD
 
+=======
+					<div class="player">
+						<ReactPlayer
+
+							className='react-player'
+							width={1280}
+							height={720}
+							url={url}
+							playing={playing}
+							controls={controls}
+							onReady={() => console.log('onReady')}
+							onStart={() => console.log('onStart')}
+							onPlay={() => handlePlay()}
+							onPause={() => handlePause()}
+							onBuffer={() => console.log('onBuffer')}
+							onProgress={(pro)=> handleProgress(pro)}
+							
+							/>
+						<p class="users">Nutzer in dieser Watchparty:</p>
+							<p class="user_list">
+								{data.map((user) => (
+									<tr key={user.id}>
+										<td>{user.name}</td>
+									</tr>
+								))}
+							</p>
+						
+					</div>
+>>>>>>> 676ae79f4e16514e600ebcf4ad42ecb9e57506b1
 					<div class="links">
 						<input type="text" name="roomname" class="link_box" placeholder="Link einfügen" value={link} onChange={(change) => setLink(change.target.value)}></input>
 						<button onClick={event => handleButton()} className="link_submit">Starten	</button>
