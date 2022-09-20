@@ -26,7 +26,7 @@ const roomurl = 'https://gruppe13.toni-barth.com/rooms/'
     export const getVideoPos = () => {          
         // get video url, fetch video url
         fetch(roomurl + sessionStorage.getItem('roomname') + '/position')
-        .then(response => {return response.json()}).then(data => { })
+        .then(response => {return response.json()}).then(data => { sessionStorage.setItem("position", data.position)})
         return sessionStorage.getItem('position')
     }
     // takes session positon and posts it to the api

@@ -70,52 +70,6 @@ const Chat = () => {
         return ret
     }
 
-    /** 
-    const convertChat=()=>{
-        
-        var check = false
-        var temp = [{author: 'user', text:'item.text', time: 'item.time'}]
-
-        chatData.forEach((item)=>{
-            
-            //cheks if user is in room, if nut user.name= undefined
-            const user = userData.find((person=>{
-                return person.id == item.userId}))
-            console.log(user)
-            // as a standart
-            var username="deleted User"
-
-            // if user is in userlist / in room
-            if(user!=undefined)
-            {
-                username= user.name
-            }
-
-            // cleanes up the initial array + assings the first slot/ the scond if the first is a real message
-            if(temp.length==1){
-                if(temp[0].time=='item.time'){
-                    temp[0]= {author: username, text: item.text, time: item.time}
-                    const t = {author: username, text: item.text, time: item.time}
-                }
-                else{
-                    temp[1]= {author: username, text: item.text, time: item.time}
-                    
-                }
-                //other cheks wont trigger for this.item if this is true
-                check= true
-            }
-            // prosseses the other objects in chatData 
-            if(temp.length>1 && check==false)
-            {
-                temp[temp.length]= {author: username, text: item.text, time: item.time}
-            }
-
-            check=false
-
-        })
-        console.log(temp)
-    }
-    */
     //____________________________
 
     const fetchChatData = (roomname) => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import "./css/watchparty.css";
 import { useNavigate } from "react-router-dom"
 import { joinRoom, leaveRoom } from './Controller/RoomController';
@@ -18,7 +18,8 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 	const [playing, setPlaying] = useState(false)
 	const [controls, setControls] = useState(true)
 	const [position, setPosition] = useState(0)
-	const [progress, setProgress] = useState({ played: 0, playedSeconds: 0, loaded: 0, loadedSeconds: 0 })
+	const [progress, setProgress] = useState({ played: 0.0, playedSeconds: 0.0, loaded: 0.0, loadedSeconds: 0.0 })
+	const refPlayer = useRef()
 
 	//handlers
 	const handlePlay = () => {
@@ -30,12 +31,11 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 		console.log('onPause')
 		postVideoStat('paused')
 	}
-
 	const handleProgress=(pro)=>{
-		console.log('pro')
 		setProgress(pro)
 		console.log(progress)
 	}
+
 
 	// constantly snyc once every 3 sekonds
 	useEffect(() => {
@@ -47,6 +47,12 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 		}, 3000);
 		return () => clearInterval(interval);
 	}, []);
+
+	useEffect(()=>{
+        console.log(progress)
+		
+    }, [progress]);
+	 
 	//---------------------------------------
 	// on load check
 	const checkInvite=()=>{
@@ -77,7 +83,6 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 		navigate('/Room')
 	}
 
-
 	// syncs
 	// calls multiple functions, which shouls sync different aspects of the player
 	const sync = async () => {		//  the room should update, url, position
@@ -101,9 +106,18 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 			setPlaying(false)
 		}
 	}
-	// gets the video Podition of the server
-	const comparePos = () => {
+	// gets the video Progress of the server and syncs with server 
+	const compareProgress = () => {
 		const b = getVideoPos()
+		if(b>progress.played)
+		{
+			refPlayer.current.seekTo( b, "seconds")
+		}
+
+		if(b<progress.played)
+		{
+			refPlayer.current.seekTo( b, "seconds")
+		}
 	}
 
 	//_____________________________________________________________________________________________
@@ -133,7 +147,7 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 					</div>
 					<div class="player">
 						<ReactPlayer
-
+							ref={refPlayer}
 							className='react-player'
 							width={1280}
 							height={720}
