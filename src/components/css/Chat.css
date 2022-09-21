@@ -1,4 +1,57 @@
-div{
-    color: white;
+.Chatbox {
+    overflow-wrap: break-word;
 }
 
+.messageBox {
+    color: #fff;
+    overflow-y: scroll;
+    overflow-wrap: break-word;
+    width: 110% ;
+    height: 20%;
+    margin-left: -2.5rem;
+}
+.ChatSubmitbar{
+    margin-top: 1rem;
+}
+.message_submit{
+    width: 70%;
+    height: 3rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+.message_submit_button{
+    height: 3.4rem;
+    width: 28%;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 960px) {
+
+    .messageBox {
+        color: #fff;
+        overflow-y: scroll;
+        overflow-wrap: break-word;
+        width: 50% ;
+        height: 20%;
+        margin-left: -2.5rem;
+    }
+    .ChatSubmitbar{
+        margin-top: 1rem;
+        overflow-wrap: break-word;
+    }
+    .message_submit{
+        width: 30%;
+        height: 3rem;
+        font-size: 1.3rem;
+        font-weight: bold;
+        overflow-wrap: break-word;
+    }
+    .message_submit_button{
+        height: 3.4rem;
+        width: 20%;
+        font-size: 1.3rem;
+        font-weight: bold;
+        overflow-wrap: break-word;
+    }
+}

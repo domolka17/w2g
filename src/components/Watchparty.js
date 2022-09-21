@@ -10,7 +10,7 @@ import Chat from './Chat';
 
 const Watchparty = () => {		// room siplay with userlist of rpp
 	const [link, setLink] = useState('')
-	const {roomid} = useParams()
+	const { roomid } = useParams()
 	const navigate = useNavigate()
 	const roomname = sessionStorage.getItem('roomname')
 	//player stats
@@ -55,16 +55,14 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 	 
 	//---------------------------------------
 	// on load check
-	const checkInvite=()=>{
-		if(sessionStorage.getItem('id')== null)
-		{
+	const checkInvite = () => {
+		if (sessionStorage.getItem('id') == null) {
 			window.sessionStorage.setItem("redirect", roomid)
 			navigate('/UserCreateSide')
 		}
-		if(sessionStorage.getItem('id')!= null && sessionStorage.getItem('roomname')== null)
-		{
+		if (sessionStorage.getItem('id') != null && sessionStorage.getItem('roomname') == null) {
 			joinRoom(roomid)
-			navigate('/Watchparty/'+roomid)
+			navigate('/Watchparty/' + roomid)
 		}
 	}
 
@@ -144,7 +142,11 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 				<div>
 					<div class="partytitle_text">
 						<h1 class="party_title">Raum: {roomname} </h1>
+						<button onClick={event => handleButton2()} className="link_leave">Raum Verlassen</button>
 					</div>
+<<<<<<< HEAD
+
+=======
 					<div class="player">
 						<ReactPlayer
 							ref={refPlayer}
@@ -172,17 +174,51 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 							</p>
 						
 					</div>
+>>>>>>> 676ae79f4e16514e600ebcf4ad42ecb9e57506b1
 					<div class="links">
 						<input type="text" name="roomname" class="link_box" placeholder="Link einfügen" value={link} onChange={(change) => setLink(change.target.value)}></input>
 						<button onClick={event => handleButton()} className="link_submit">Starten	</button>
-						<button onClick={event => handleButton2()} className="link_leave">Raum Verlassen</button>
+						
 					</div>
-					
-					<div class="chat">
-						<Chat/>
 
+					<div>
+						<div class="player">
+							<ReactPlayer
+								width="62%"
+								height="62%"
+								class='reactplayer'
+								url={url}
+								playing={playing}
+								controls={controls}
+								onReady={() => console.log('onReady')}
+								onStart={() => console.log('onStart')}
+								onPlay={() => handlePlay()}
+								onPause={() => handlePause()}
+								onBuffer={() => console.log('onBuffer')}
+
+							/>
+
+						</div>
 					</div>
-				
+
+					<div>
+						<div class="user_box">
+							<div>
+								<p class="users">Nutzer in dieser Watchparty:</p>
+								<p class="user_list">
+									{data.map((user) => (
+										<tr key={user.id}>
+											<td>{user.name}</td>
+										</tr>
+									))}
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="chat">
+						<Chat />
+					</div>
+
 				</div>
 			</body>
 		</>

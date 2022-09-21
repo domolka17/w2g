@@ -101,8 +101,8 @@ const Chat = () => {
 			{messageList.map( line => <ul className='massage' key={line.time}>{line.author+': '+line.text}</ul>)}
         </div>
         <div className='ChatSubmitbar'>
-            <input type="text"  class="submit" placeholder="Narricht schreiben" value={message} onChange={(change) => setMessage(change.target.value)}></input>
-            <button onClick={event => handleButton()} className="message_submit">Send</button>
+            <input type="text"  class="message_submit" placeholder="Nachricht schreiben" value={message} onChange={(change) => setMessage(change.target.value)}></input>
+            <button onClick={event => handleButton()} className="message_submit_button">Senden</button>
        
         </div>
     </div>
