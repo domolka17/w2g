@@ -50,7 +50,6 @@ const logOut = (id)=>{
         <Route path='/about' element={<About />} />
         <Route path='/Help' element={<Help />} />
         <Route path="/Room" element={<Room/>}/>
-        <Route path="/Host" element={<Host/>}/>
         <Route path="/Watchparty/:roomid" element={<Watchparty/>}/>
         <Route path="/UserCreateSide" element={<UserCreatrSide/>}/>
         <Route path="/Chat" element={<Chat/>}/>
