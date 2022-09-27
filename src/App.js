@@ -44,7 +44,8 @@ const logOut = (id)=>{
     <Router>
       <Navbar />
       <Routes>
-        <Route exact path='/w2g2022-web/' element={<Home />} />
+        <Route exact path='/' element={<Home />} />
+        <Route path='/w2gt2022' element={<Home />} />
         <Route path='/index' element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path='/Help' element={<Help />} />
