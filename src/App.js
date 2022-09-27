@@ -48,7 +48,6 @@ return (
         <Route exact path='/about' element={<About />} />
         <Route exact path='/Help' element={<Help />} />
         <Route exact path="/Room" element={<Room />} />
-        <Route exact path="/Host" element={<Host />} />
         <Route exact path="/Watchparty/:roomid" element={<Watchparty />} />
         <Route exact path="/UserCreateSide" element={<UserCreatrSide />} />
         <Route exact path="/Chat" element={<Chat />} />
