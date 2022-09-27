@@ -3,7 +3,6 @@ import {  createUser } from "./Controller/UserController";
 import "./css/host.css";
 import {useNavigate} from "react-router-dom"
 import { createRoom, joinRoom } from './Controller/RoomController';
-import { FaFlagCheckered } from 'react-icons/fa';
 
 const UserCreatrSide = () => {
     const [inp, setInput] = useState('')

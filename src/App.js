@@ -9,7 +9,6 @@ import Help from './components/Help';
 import Room from './components/Room';
 import Host from "./components/Host";
 import Watchparty from "./components/Watchparty";
-import { deleteUser } from "./components/Controller/UserController";
 import { leaveRoom } from "./components/Controller/RoomController";
 import UserCreatrSide from "./components/UserCreateSide";
 import { NotFound } from "./components/NotFound";
@@ -54,7 +53,7 @@ const logOut = (id)=>{
         <Route path="/Watchparty/:roomid" element={<Watchparty/>}/>
         <Route path="/UserCreateSide" element={<UserCreatrSide/>}/>
         <Route path="/Chat" element={<Chat/>}/>
-        <Route path="*" element={<NotFound/>}/>                             // routes any unknown location to Not found 
+        <Route path="*" element={<NotFound/> }/>     
       </Routes>
     </Router>
   );
