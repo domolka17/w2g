@@ -27,22 +27,22 @@ const Navbar = () => {
 
           <div class="menu">
             <li>
-              <NavLink to="index" activeStyle>
+              <NavLink to="/index" activeStyle>
                 Startseite
               </NavLink>
             </li>
             <li>
-              <NavLink to="Room" activeStyle>
+              <NavLink to="/Room" activeStyle>
                 Räume
               </NavLink>
             </li>
             <li>
-              <NavLink to="help" activeStyle>
+              <NavLink to="/help" activeStyle>
                 Hilfe
               </NavLink>
             </li>
             <li>
-              <NavLink to="about" activeStyle>
+              <NavLink to="/about" activeStyle>
                 About
               </NavLink>
             </li>
