@@ -1,60 +1,83 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import "./css/watchparty.css";
 import { useNavigate } from "react-router-dom"
-import { leaveRoom } from './Controller/RoomController';
+import { joinRoom, leaveRoom } from './Controller/RoomController';
 import ReactPlayer from 'react-player';
-import { getVideo, getVideoStat, postVideo, postVideoPos, postVideoStat } from './Controller/VideoController';
+import { getVideo, getVideoPos, getVideoStat, postVideo, postVideoPos, postVideoStat } from './Controller/VideoController';
+import { useParams } from 'react-router-dom';
+import Chat from './Chat';
 
 
 const Watchparty = () => {		// room siplay with userlist of rpp
-	const firstUrl = 'https://www.youtube.com/watch?v=Q0B5dLHDQ2w'
 	const [link, setLink] = useState('')
-
+	const { roomid } = useParams()
 	const navigate = useNavigate()
-	const unsername = sessionStorage.getItem('name')
-	const id = sessionStorage.getItem('id')
 	const roomname = sessionStorage.getItem('roomname')
-	const [first, setFirst] = useState(true)
-		;
 	//player stats
 	const [url, setUrl] = useState(null)
 	const [playing, setPlaying] = useState(false)
 	const [controls, setControls] = useState(true)
+	const [position, setPosition] = useState(0)
+	const [progress, setProgress] = useState({ played: 0.0, playedSeconds: 0.0, loaded: 0.0, loadedSeconds: 0.0 })
+	const refPlayer = useRef()
 
-	//handler
-
+	//handlers
 	const handlePlay = () => {
 		console.log('onPlay')
 
 		postVideoStat('playing')
 	}
-
 	const handlePause = () => {
 		console.log('onPause')
 		postVideoStat('paused')
 	}
-	const handleSeekChange = (e) => {
-
-		postVideoPos(parseFloat(e.target.value))
+	const handleProgress=(pro)=>{
+		setProgress(pro)
+		console.log(progress)
 	}
 
-	// constantly snyc
+
+	// constantly snyc once every 3 sekonds
 	useEffect(() => {
+		console.log("test check")
+		checkInvite()
 		const interval = setInterval(() => {
 			sync()
+			fetchData()
 		}, 3000);
 		return () => clearInterval(interval);
 	}, []);
 
+	useEffect(()=>{
+        console.log(progress)
+		
+    }, [progress]);
+	 
+	//---------------------------------------
+	// on load check
+	const checkInvite = () => {
+		if (sessionStorage.getItem('id') == null) {
+			window.sessionStorage.setItem("redirect", roomid)
+			navigate('/UserCreateSide')
+		}
+		if (sessionStorage.getItem('id') != null && sessionStorage.getItem('roomname') == null) {
+			joinRoom(roomid)
+			navigate('/Watchparty/' + roomid)
+		}
+	}
+
+	//---------------------------------------
 	// buttons
 	const handleButton = () => {		// gives button its funktion leave, submit video
 		setUrl(link)
 		postVideo(link)
 		console.log(url)
+		console.log(window.location.href)
 	}
 	const handleButton2 = () => {		// gives button its funktion, leave Room
 		leaveRoom(sessionStorage.getItem('roomname'))
-
+		sessionStorage.removeItem('url')
+		sessionStorage.removeItem('stat')
 		navigate('/Room')
 	}
 
@@ -80,27 +103,32 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 		if (a == 'paused') {
 			setPlaying(false)
 		}
-
 	}
-	// gets the video Podition of the server
-	const comparePos = () => {
+	// gets the video Progress of the server and syncs with server 
+	const compareProgress = () => {
+		const b = getVideoPos()
+		if(b>progress.played)
+		{
+			refPlayer.current.seekTo( b, "seconds")
+		}
 
+		if(b<progress.played)
+		{
+			refPlayer.current.seekTo( b, "seconds")
+		}
 	}
 
 	//_____________________________________________________________________________________________
+	// user list
 	const [data, getData] = useState([])
-	const URL = 'https://gruppe18.toni-barth.com/rooms/' + roomname + '/users';
+	const URL = 'https://gruppe13.toni-barth.com/rooms/' + roomname + '/users';
 
-	useEffect(() => {
-		fetchData()
-	}, [])
 
 
 	const fetchData = () => {
 		fetch(URL)
 			.then((res) =>
 				res.json())
-
 			.then((response) => {
 				console.log(response.users);
 				getData(response.users);
@@ -114,37 +142,52 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 				<div>
 					<div class="partytitle_text">
 						<h1 class="party_title">Raum: {roomname} </h1>
+						<button onClick={event => handleButton2()} className="link_leave">Raum Verlassen</button>
 					</div>
-					<div class="player">
-						<ReactPlayer
-
-							className='react-player'
-							width={1280}
-							height={720}
-							url={url}
-							playing={playing}
-							controls={controls}
-							onReady={() => console.log('onReady')}
-							onStart={() => console.log('onStart')}
-							onPlay={() => handlePlay()}
-							onPause={() => handlePause()}
-							onBuffer={() => console.log('onBuffer')}
-							onSeek={e => { handleSeekChange(e) }}
-						/>
-						<p class="users">Nutzer in dieser Watchparty:</p>
-							<p class="user_list">
-								{data.map((users, name) => (
-									<tr key={name}>
-										<td>{users.name}</td>
-									</tr>
-								))}
-							</p>
-						
-					</div>
+					
 					<div class="links">
 						<input type="text" name="roomname" class="link_box" placeholder="Link einfügen" value={link} onChange={(change) => setLink(change.target.value)}></input>
 						<button onClick={event => handleButton()} className="link_submit">Starten	</button>
-						<button onClick={event => handleButton2()} className="link_leave">Raum Verlassen</button>
+						
+					</div>
+
+					<div>
+						<div class="player">
+							<ReactPlayer
+								width="62%"
+								height="62%"
+								class='reactplayer'
+								url={url}
+								playing={playing}
+								controls={controls}
+								onReady={() => console.log('onReady')}
+								onStart={() => console.log('onStart')}
+								onPlay={() => handlePlay()}
+								onPause={() => handlePause()}
+								onBuffer={() => console.log('onBuffer')}
+								onProgress={(pro)=> handleProgress(pro)}
+								onSeek={()=> console.log("UUUU")}
+							/>
+
+						</div>
+					</div>
+
+					<div>
+						<div class="user_box">
+							<div>
+								<p class="users">Nutzer in dieser Watchparty:</p>
+								<p class="user_list">
+									{data.map((user) => (
+										<tr key={user.id}>
+											<td>{user.name}</td>
+										</tr>
+									))}
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="chat">
+						<Chat />
 					</div>
 
 				</div>

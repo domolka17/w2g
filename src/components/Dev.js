@@ -24,7 +24,7 @@ const  Dev = () => {
 
 	const [data, getData] = useState([])
 	const [user, setUser] = useState('')
-    const URL = 'https://gruppe18.toni-barth.com/rooms/';
+    const URL = 'https://gruppe13.toni-barth.com/rooms/';
     const fetchData = () => {
       fetch(URL)
         .then((res) =>
@@ -38,7 +38,7 @@ const  Dev = () => {
 	{
 		const name = data.at(1).name
 		var user = null
-		fetch('https://gruppe18.toni-barth.com/rooms/'+name+'/users', {
+		fetch('https://gruppe13.toni-barth.com/rooms/'+name+'/users', {
             method:'GET'
         })
 		.then((res) =>
@@ -61,6 +61,8 @@ const  Dev = () => {
 		const id = createUser('dev')
 	}
 
+	
+
 
 	return (
 		<>
@@ -74,6 +76,9 @@ const  Dev = () => {
 						</div>
 						<div class="zwei">
 							<button onClick={event => handleButtonDELETEROOM()} className="host_button">DELETE ALL ROOMS</button>
+						</div>
+						<div class="zwei">
+							<button onClick={event => rout()} className="host_button">Routtest</button>
 						</div>
 					
 				</div>

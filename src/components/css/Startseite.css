@@ -1,17 +1,18 @@
-.homescreen_buttons{
-  width: 40%;
-  height: 30%;
-  font-size: 2.5em;
+.buttonContainer {
+  display: flex;
+  align-content: center;
+  justify-content: space-evenly;
+}
+
+.homescreen_buttons {
+  width: 45%;
+  height: 5rem;
+  font-size: 1.875rem;
   font-weight: bold;
-  padding: 1rem;
-  margin-top: 40px;
-  margin-bottom: 30px;
-  margin-left: 7%;
   background-color: #d0d4ff;
   border-style: outset;
   border-radius: 10px;
 
-  
 }
 
 .homescreen_buttons:hover {
@@ -19,71 +20,118 @@
   font-weight: bold;
   color: #ffffff;
   transition-duration: 300ms;
- 
+
 }
 
-.title_text{
-    width: 100%;
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-
-    
-}
-.welcome_text{
-  width: 100%;
-  display:flex;
+.title_text {
+  display: flex;
   justify-content: center;
-  
+  align-content: center;
+
 }
-.textbox{
+
+.title {
+  color: #ffffff;
+  font-size: 3.125rem;
+  font-weight: bolder;
+  margin: 1.875rem;
+}
+
+.welcome_text {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.text {
+  color: #ffffff;
+  font-size: 1.875rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 1.875rem;
+}
+
+.textbox {
   display: flex;
   color: #ffffff;
-  font-size: 30px;
+  font-size: 1.875rem;
   justify-content: center;
   font-weight: bold;
-}
-.title{
-  display: flex;
-  color: #ffffff;
-  font-size: 50px;
-  justify-content: center;
+  margin: 1.875rem;
 }
 
+
+/*----------------------------------------------------------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------------------------------------------------------*/
+
 @media screen and (max-width: 960px) {
-  .homescreen_buttons{
-    width: 40%;
-    height: 30%;
-    font-size: 2.5em;
+  .buttonContainer {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    
+  }
+  
+  .homescreen_buttons {
+    width: 100%;
+    font-size: 1.3rem;
     font-weight: bold;
-    padding: 1rem;
-    margin-top: 40px;
-    margin-bottom: 30px;
-    margin-left: 7%;
     background-color: #d0d4ff;
     border-style: outset;
     border-radius: 10px;
   
-    
   }
-  
+
   .homescreen_buttons:hover {
     background-color: #6f79cf;
     font-weight: bold;
     color: #ffffff;
     transition-duration: 300ms;
-   
+
+  }
+
+  .title_text {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  
   }
   
-  .title_text{
-      width: 100%;
-      color: #ffffff;
-      display: flex;
-      justify-content: center;
-  
-      
+  .title {
+
+    color: #ffffff;
+    font-size: 2.125rem;
+    margin: 1.875rem;
   }
-  .welcome_text{
+
+  .welcome_text {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+  }
+
+  .text {
+    
+    color: #ffffff;
+    font-size: 1.3rem;
+    margin: 1.875rem;
+  }
+
+  .textbox {
+    display: flex;
+    color: #ffffff;
+    font-size: 1.3rem;
+    justify-content: center;
+    font-weight: bold;
+    margin: 1.3rem;
+  }
+
+
+  /*
+    .welcome_text{
     width: 100%;
     display:flex;
     justify-content: center;
@@ -96,10 +144,17 @@
     justify-content: center;
     font-weight: bold;
   }
-  .title{
-    display: flex;
-    color: #ffffff;
-    font-size: 50px;
-    justify-content: center;
-  }
+
+    width: 40%;
+    height: 30%;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 1rem;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    margin-left: 7%;
+    background-color: #d0d4ff;
+    border-style: outset;
+    border-radius: 10px;
+    */
 }

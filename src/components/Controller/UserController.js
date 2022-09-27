@@ -1,15 +1,13 @@
 /*
-
  create user should be done
  delete user should be done
-TODO get user state or figure out when user closes browser or leaves site
 */
 
 
 // collection of funktions relates to the controll of a user
-
+const url = 'https://gruppe13.toni-barth.com/users/'
  export const createUser = (input) => {
-    const url = 'https://gruppe18.toni-barth.com/users/'
+   
     window.sessionStorage.setItem("name", input);
     //post user
     fetch(url, {
@@ -24,7 +22,7 @@ TODO get user state or figure out when user closes browser or leaves site
 
 export const deleteUser = (id) => {                 // as an alternative one could change it, so this funktion would resive the id directly
         // delete request
-        fetch('https://gruppe18.toni-barth.com/users/'+ id, {
+        fetch(url+ id, {
           method:'DELETE', headers:{"Content-Type": "application/json"}
       })
     }

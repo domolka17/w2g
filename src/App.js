@@ -9,9 +9,10 @@ import Help from './components/Help';
 import Room from './components/Room';
 import Host from "./components/Host";
 import Watchparty from "./components/Watchparty";
-import { deleteUser } from "./components/Controller/UserController";
 import { leaveRoom } from "./components/Controller/RoomController";
 import UserCreatrSide from "./components/UserCreateSide";
+import { NotFound } from "./components/NotFound";
+import Chat from "./components/Chat";
 
 
 function App() {
@@ -24,16 +25,20 @@ function App() {
     }
 })
 const handleTabClosing = () => {
-  logOut(sessionStorage.getItem('id'), sessionStorage.getItem('name'))
+  logOut(sessionStorage.getItem('id'))
 }
 const alertUser = (event) => {
   event.preventDefault()
   event.returnValue = ''
+  // not lösung, nutzer werden sonst nie gelöscht bei verlassen der Seite
+  leaveRoom( sessionStorage.getItem('roomname'))
+  logOut(sessionStorage.getItem('id'))
 }
-const logOut = (id, roomname)=>{
-  leaveRoom(roomname)
-  deleteUser(id)
-  sessionStorage.clear()
+const logOut = (id)=>{
+  const url = 'https://gruppe13.toni-barth.com/users/'
+  fetch(url+ id, {
+    method:'DELETE', headers:{"Content-Type": "application/json"}
+  }).then(sessionStorage.clear())
 }
   return (
     <Router>
@@ -45,8 +50,10 @@ const logOut = (id, roomname)=>{
         <Route path='/Help' element={<Help />} />
         <Route path="/Room" element={<Room/>}/>
         <Route path="/Host" element={<Host/>}/>
-        <Route path="/Watchparty" element={<Watchparty/>}/>
+        <Route path="/Watchparty/:roomid" element={<Watchparty/>}/>
         <Route path="/UserCreateSide" element={<UserCreatrSide/>}/>
+        <Route path="/Chat" element={<Chat/>}/>
+        <Route path="*" element={<NotFound/> }/>     
       </Routes>
     </Router>
   );

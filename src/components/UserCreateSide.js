@@ -1,24 +1,74 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {  createUser } from "./Controller/UserController";
 import "./css/host.css";
 import {useNavigate} from "react-router-dom"
+import { createRoom, joinRoom } from './Controller/RoomController';
 
 const UserCreatrSide = () => {
     const [inp, setInput] = useState('')
     const navigate = useNavigate()
+    const redirect = sessionStorage.getItem('redirect')
+    
+
+    useEffect(()=>{
+		checker()
+    }, []);
+
+
+
     const  handleButton =  () => {		// gives button its funktion
-		createUser(inp)
+		
         if(sessionStorage.getItem('redirect')!=null){
-            const redirect = sessionStorage.getItem('redirect')
             sessionStorage.removeItem('redirect');
-            navigate(sessionStorage.getItem(redirect))
+
+            // triggers when room is available
+            if(checker()==true){
+                createUser(inp)
+                setTimeout(function () {
+                    joinRoom(redirect)
+                    }, 500)
+                
+                setTimeout(function () {
+                navigate('/Watchparty/'+redirect)
+                }, 500)
+            }
+
+            else{
+                navigate('/*')
+            }
+
+
+           
         }
         else{
-            navigate('/index')
+            createUser(inp)
+            setTimeout(function () {
+                createRoom()
+                setTimeout(function () {
+                navigate('/Watchparty/'+sessionStorage.getItem('roomname'))
+                }, 500)
+                }, 200)
         }
-		
-	}
+    }
 
+    const checker=()=>{
+        var find = []
+        fetch('https://gruppe13.toni-barth.com/rooms/')
+          .then((res) =>
+        res.json())
+          .then((response) => {
+           find= response.roomsfind((item)=>{
+            return item.name == redirect
+            })
+         })
+        if(find == undefined)
+        {
+            return false
+        }
+        else{
+            return true
+        }
+    }
 
   return (
     <>

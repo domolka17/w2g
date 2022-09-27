@@ -1,6 +1,5 @@
 import React from 'react'
 import "./css/room.css";
-import useGetFetch from './fetch/useGetFetch'
 import { useNavigate } from "react-router-dom"
 import { createRoom, joinRoom } from "./Controller/RoomController";
 import { useEffect, useState } from "react";
@@ -15,30 +14,33 @@ const Room = () => {
     else {
       createRoom()
       setTimeout(function () {
-        navigate('/Watchparty')
+        navigate('/Watchparty/'+sessionStorage.getItem('roomname'))
       }, 500)
     }
   }
   const handleButton2 = (roomname) => {        // gives button its funktion
     if (sessionStorage.getItem('id') == null) {
-        navigate('/UserCreateSide')
-
+      window.sessionStorage.setItem("redirect", roomname)
+      navigate('/UserCreateSide')
     }
     else {
-    joinRoom(roomname)
+      joinRoom(roomname)
       setTimeout(function () {
-        navigate('/Watchparty')
+        navigate('/Watchparty/'+roomname)
       }, 500)
     }
   }
 
   const [data, getData] = useState([])
-  const URL = 'https://gruppe18.toni-barth.com/rooms/';
+  const URL = 'https://gruppe13.toni-barth.com/rooms/';
+
 
   useEffect(() => {
-    fetchData()
-  }, [])
-
+		const interval = setInterval(() => {
+			fetchData()
+		}, 3000);
+		return () => clearInterval(interval);
+	}, []);
 
   const fetchData = () => {
     fetch(URL)
@@ -56,25 +58,28 @@ const Room = () => {
   return (
     <body>
       <div>
-        <div class="title_text">
-          <h1 class="title">Treten Sie einer vorhandenen Watchparty bei</h1>
+        <div class="room_title_text">
+          <h1 class="room_title">Treten Sie einer vorhandenen Watchparty bei</h1>
         </div>
         <div >
-          <h3 class="h3">Vorhandene Räume</h3>
+          <h3 class="room_h3">Vorhandene Räume</h3>
           <p class="roomlist">
             {data.map((rooms, name) => (
               <tr key={name}>
-                <button onClick={event =>  handleButton2(rooms.name)} className="room_button">{rooms.name}</button>
+                <button onClick={event => handleButton2(rooms.name)} className="roomlink_button">{rooms.name}</button>
               </tr>
             ))}
           </p>
         </div>
         <div>
-        
+
         </div>
-        <div class="welcome_text">
-          <p class="textbox">Oder vielleicht doch eine eigene Watchparty erstellen?</p>
-          <button onClick={event => handleButton()} className="homescreen_buttons">Einen neuen Raum erstellen</button>
+        <div>
+          <p class="room_text">Oder vielleicht doch eine eigene Watchparty erstellen?</p>
+        </div>
+
+        <div class="room_buttons_container">
+          <button onClick={event => handleButton()} className="room_buttons">Einen neuen Raum erstellen</button>
         </div>
       </div>
     </body>

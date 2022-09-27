@@ -1,4 +1,4 @@
-.homescreen_buttons{
+/*.homescreen_buttons{
   width: 40%;
   height: 30%;
   font-size: 2.5em;
@@ -21,8 +21,15 @@
   transition-duration: 300ms;
  
 }
+.welcome_text{
+  width: 100%;
+  display:flex;
+  justify-content: center;
+  
+}
+*/
 
-.title_text{
+.help_title_text{
     width: 100%;
     color: #ffffff;
     display: flex;
@@ -30,28 +37,18 @@
 
     
 }
-.welcome_text{
-  width: 100%;
-  display:flex;
-  justify-content: center;
-  
-}
-.textbox{
+
+.help_title{
   display: flex;
   color: #ffffff;
-  font-size: 30px;
+  font-size: 3.125rem;
   justify-content: center;
-}
-.title{
-  display: flex;
-  color: #ffffff;
-  font-size: 50px;
-  justify-content: center;
+  margin: 1.875rem;
 }
 .controls{
   list-style: none;
   color: #ffffff;
-  font-size: 30px;
+  font-size: 1.875rem;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -59,4 +56,35 @@
 }
 .li{
   margin-top: 8px;
+}
+
+@media screen and (max-width: 960px) {
+  .help_title_text{
+    width: 100%;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+
+    
+}
+
+.help_title{
+  display: flex;
+  color: #ffffff;
+  font-size: 2.125rem;
+  justify-content: center;
+  margin: 1.875rem;
+}
+.controls{
+  list-style: none;
+  color: #ffffff;
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  
+}
+.li{
+  margin-top: 8px;
+}
 }
