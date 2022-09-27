@@ -44,16 +44,16 @@ const logOut = (id)=>{
     <Router>
       <Navbar />
       <Routes>
-        <Route exact path='/' element={<Home />} />
-        <Route path='w2g2022-web/' element={<Home />} />
-        <Route path='w2g2022-web/index' element={<Home />} />
-        <Route path='w2g2022-web/about' element={<About />} />
-        <Route path='w2g2022-web/Help' element={<Help />} />
-        <Route path="w2g2022-web/Room" element={<Room/>}/>
-        <Route path="w2g2022-web/Host" element={<Host/>}/>
-        <Route path="w2g2022-web/Watchparty/:roomid" element={<Watchparty/>}/>
-        <Route path="w2g2022-web/UserCreateSide" element={<UserCreatrSide/>}/>
-        <Route path="w2g2022-web/Chat" element={<Chat/>}/>
+        <Route exact path='/w2g2022-web/' element={<Home />} />
+        <Route path='/w2g2022-web/' element={<Home />} />
+        <Route path='/w2g2022-web/index' element={<Home />} />
+        <Route path='/w2g2022-web/about' element={<About />} />
+        <Route path='/w2g2022-web/Help' element={<Help />} />
+        <Route path="/w2g2022-web/Room" element={<Room/>}/>
+        <Route path="/w2g2022-web/Host" element={<Host/>}/>
+        <Route path="/w2g2022-web/Watchparty/:roomid" element={<Watchparty/>}/>
+        <Route path="/w2g2022-web/UserCreateSide" element={<UserCreatrSide/>}/>
+        <Route path="/w2g2022-web/Chat" element={<Chat/>}/>
         <Route path="*" element={<NotFound/> }/>     
       </Routes>
     </Router>
