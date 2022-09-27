@@ -130,37 +130,6 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 						<h1 class="party_title">Raum: {roomname} </h1>
 						<button onClick={event => handleButton2()} className="link_leave">Raum Verlassen</button>
 					</div>
-<<<<<<< HEAD
-
-=======
-					<div class="player">
-						<ReactPlayer
-
-							className='react-player'
-							width={1280}
-							height={720}
-							url={url}
-							playing={playing}
-							controls={controls}
-							onReady={() => console.log('onReady')}
-							onStart={() => console.log('onStart')}
-							onPlay={() => handlePlay()}
-							onPause={() => handlePause()}
-							onBuffer={() => console.log('onBuffer')}
-							onProgress={(pro)=> handleProgress(pro)}
-							
-							/>
-						<p class="users">Nutzer in dieser Watchparty:</p>
-							<p class="user_list">
-								{data.map((user) => (
-									<tr key={user.id}>
-										<td>{user.name}</td>
-									</tr>
-								))}
-							</p>
-						
-					</div>
->>>>>>> 676ae79f4e16514e600ebcf4ad42ecb9e57506b1
 					<div class="links">
 						<input type="text" name="roomname" class="link_box" placeholder="Link einfügen" value={link} onChange={(change) => setLink(change.target.value)}></input>
 						<button onClick={event => handleButton()} className="link_submit">Starten	</button>
