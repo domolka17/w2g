@@ -50,7 +50,7 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 
 	useEffect(()=>{
         console.log(progress)
-		
+		compareProgress()
     }, [progress]);
 	 
 	//---------------------------------------
