@@ -39,6 +39,10 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 	}
 	const handlePause = () => {
 		console.log('onPause')
+		console.log(roomLeader)
+		if(roomLeader==true){
+			postVideoPos(progress.playedSeconds)
+		}
 		if(apiState=='paused')
 		{
 			return
@@ -51,11 +55,11 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 	const handleProgress=(pro)=>{
 		setProgress(pro)
 		console.log(progress)
+		
 	}
 
 	const handleBuffer=(  )=>{
 		console.log('onBuffer')
-		postVideoPos(progress.playedSeconds)
 	}
 
 
@@ -84,11 +88,20 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 			}
 		}
 	},[apiState])
+	// handles roomleader status change
+	useEffect(()=>{
+		if(roomLeader==true){
+			
+		}
+		else{
+			
+		}
+	},[roomLeader])
 	// updates the player pos with api pos
 	useEffect(()=>{
 		
 	},[apiPos])
-	//
+	// loades leader data when data is available
 	useEffect(()=>{
 		if(data[0]==undefined)
 		{
@@ -141,12 +154,12 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 		let st = {url:getVideo(), state: getVideoStat(), position: getVideoPos()}
 		setApiState(st.state)
 		syncUrl(st)
-		//compareState(st)
-		compareProgress(st)
+		if(roomLeader==false){
+			compareProgress(st)
+		}
 	}
 	// takes value of getVideo and sets it as room(user) url, when url = compare nothing happens to the player, if compare was differen the player changes 
 	const syncUrl = (st) => {
-
 		setUrl(st.url)
 		sessionStorage.setItem("url", url)
 		return true

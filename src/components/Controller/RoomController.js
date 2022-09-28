@@ -5,7 +5,7 @@
  leave room should be done
 */
 
-import React from 'react'
+
 
 
 // collection of funktions related to the controll of a room
