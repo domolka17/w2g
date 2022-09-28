@@ -46,7 +46,7 @@ const Home = () => {
 									Farbblindenmodus (Coming Soon™)
 								</li>
 								<li>
-									Text-To-Speech (Coming Soon™)
+									Yeet-To-Speech (Coming Soon™)
 								</li>
 								<li>
 									Untertitel (Coming Soon™)
