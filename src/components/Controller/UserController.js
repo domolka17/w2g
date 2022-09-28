@@ -13,7 +13,7 @@ const url = 'https://gruppe13.toni-barth.com/users/'
     fetch(url, {
         method:'POST',
         headers:{"Content-Type": "application/json"},
-        body:  JSON.stringify({"name": JSON.stringify(input)})  
+        body:  JSON.stringify({"name": input})  
     }).then((response) => { return response.json()})                 
     .then((data) => {window.sessionStorage.setItem("id", data.id)})   
     

@@ -38,7 +38,7 @@ const roomurl = 'https://gruppe13.toni-barth.com/rooms/'
             body:  JSON.stringify({"user": sessionStorage.getItem('id'),"position": pos}),})
     }
 
-    export const postVideoStat = (stat) => {  //posts room position of video
+    export const postVideoStat = (stat) => {  //posts room status of video
         // get video url, fetch video url
         fetch(roomurl + sessionStorage.getItem('roomname') + '/status', {
             method: 'PUT',

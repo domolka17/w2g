@@ -9,31 +9,53 @@ import Chat from './Chat';
 
 
 const Watchparty = () => {		// room siplay with userlist of rpp
+	const [roomLeader, setRoomleader]=useState(false)
 	const [link, setLink] = useState('')
 	const { roomid } = useParams()
 	const navigate = useNavigate()
 	const roomname = sessionStorage.getItem('roomname')
+	const [data, getData] = useState([])
+	const URL = 'https://gruppe13.toni-barth.com/rooms/' + roomname + '/users';
 	//player stats
 	const [url, setUrl] = useState(null)
 	const [playing, setPlaying] = useState(false)
 	const [controls, setControls] = useState(true)
-	const [position, setPosition] = useState(0)
-	const [progress, setProgress] = useState({ played: 0.0, playedSeconds: 0.0, loaded: 0.0, loadedSeconds: 0.0 })
+	const [progress, setProgress] = useState({ playedSeconds: 0.0, played: 0.0, loadedSeconds: 0.0, loaded: 0.0 })
 	const refPlayer = useRef()
-
+	//api sates
+	const [apiState, setApiState]= useState('')
+	const [apiPos, setApiPos] = useState(0)
 	//handlers
-	const handlePlay = () => {
-		console.log('onPlay')
-
-		postVideoStat('playing')
+	const handlePlay = () => 
+	{
+		if(apiState=='playing'){
+			return
+		}
+		else{
+			console.log('onPlay')
+			postVideoStat('playing')
+		}
+		
 	}
 	const handlePause = () => {
 		console.log('onPause')
-		postVideoStat('paused')
+		if(apiState=='paused')
+		{
+			return
+		}
+		else{
+			postVideoStat('paused')
+		}
+		
 	}
 	const handleProgress=(pro)=>{
 		setProgress(pro)
 		console.log(progress)
+	}
+
+	const handleBuffer=(  )=>{
+		console.log('onBuffer')
+		postVideoPos(progress.playedSeconds)
 	}
 
 
@@ -44,14 +66,38 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 		const interval = setInterval(() => {
 			sync()
 			fetchData()
+			
 		}, 3000);
 		return () => clearInterval(interval);
 	}, []);
 
+	// updates the player status with the api status
 	useEffect(()=>{
-        console.log(progress)
+		if(apiState=='playing'){
+			if(playing==false){
+				setPlaying(true)
+			}
+		}
+		else{
+			if(playing==true){
+				setPlaying(false)
+			}
+		}
+	},[apiState])
+	// updates the player pos with api pos
+	useEffect(()=>{
 		
-    }, [progress]);
+	},[apiPos])
+	//
+	useEffect(()=>{
+		if(data[0]==undefined)
+		{
+
+		}
+		else{
+			checkLeader()	
+		}
+	},[data])
 	 
 	//---------------------------------------
 	// on load check
@@ -65,14 +111,22 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 			navigate('/Watchparty/' + roomid)
 		}
 	}
-
+	// check leader 
+	const checkLeader=()=> {
+		let user = data[0]
+		console.log(user.name)
+		if(user.name==sessionStorage.getItem('name')){
+			setRoomleader(true)
+		}
+	}
 	//---------------------------------------
 	// buttons
 	const handleButton = () => {		// gives button its funktion leave, submit video
+		postVideoPos(0)
 		setUrl(link)
 		postVideo(link)
 		console.log(url)
-		console.log(window.location.href)
+		setLink("")
 	}
 	const handleButton2 = () => {		// gives button its funktion, leave Room
 		leaveRoom(sessionStorage.getItem('roomname'))
@@ -84,44 +138,42 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 	// syncs
 	// calls multiple functions, which shouls sync different aspects of the player
 	const sync = async () => {		//  the room should update, url, position
-		syncUrl()
-		compareState()
+		let st = {url:getVideo(), state: getVideoStat(), position: getVideoPos()}
+		setApiState(st.state)
+		syncUrl(st)
+		//compareState(st)
+		compareProgress(st)
 	}
 	// takes value of getVideo and sets it as room(user) url, when url = compare nothing happens to the player, if compare was differen the player changes 
-	const syncUrl = () => {
-		const compare = getVideo()
-		setUrl(compare)
+	const syncUrl = (st) => {
+
+		setUrl(st.url)
 		sessionStorage.setItem("url", url)
 		return true
 	}
-	// should get the status of the video and paus/play the video, but doesnt work
-	const compareState = () => {
-		const a = getVideoStat()
-		if (a == 'playing') {
-			setPlaying(true)
-		}
-		if (a == 'paused') {
-			setPlaying(false)
-		}
-	}
+	
 	// gets the video Progress of the server and syncs with server 
-	const compareProgress = () => {
-		const b = getVideoPos()
-		if(b>progress.played)
+	const compareProgress = (st) => {
+		
+		console.log(st.position)
+		console.log(progress.playedSeconds)
+		if(st.position-progress.playedSeconds>2)
 		{
-			refPlayer.current.seekTo( b, "seconds")
+			if(st.state == 'paused'){
+				refPlayer.current.seekTo( st.position, "seconds")
+			}
 		}
-
-		if(b<progress.played)
+		if(progress.playedSeconds-st.position>2)
 		{
-			refPlayer.current.seekTo( b, "seconds")
+			if(st.state == 'paused'){
+				refPlayer.current.seekTo( st.position, "seconds")
+			}
 		}
 	}
 
 	//_____________________________________________________________________________________________
 	// user list
-	const [data, getData] = useState([])
-	const URL = 'https://gruppe13.toni-barth.com/rooms/' + roomname + '/users';
+	
 
 
 
@@ -158,17 +210,17 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 								height="62%"
 								class='reactplayer'
 								url={url}
+								ref={refPlayer}
 								playing={playing}
 								controls={controls}
 								onReady={() => console.log('onReady')}
 								onStart={() => console.log('onStart')}
 								onPlay={() => handlePlay()}
 								onPause={() => handlePause()}
-								onBuffer={() => console.log('onBuffer')}
+								onBuffer={() => handleBuffer()}
 								onProgress={(pro)=> handleProgress(pro)}
-								onSeek={()=> console.log("UUUU")}
+								progressInterval={3000}
 							/>
-
 						</div>
 					</div>
 
@@ -179,7 +231,7 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 								<p class="user_list">
 									{data.map((user) => (
 										<tr key={user.id}>
-											<td>{user.name}</td>
+											<td>{'" '+user.name+' "'}</td>
 										</tr>
 									))}
 								</p>
