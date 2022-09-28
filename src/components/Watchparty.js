@@ -207,33 +207,32 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 				<div>
 					<div class="partytitle_text">
 						<h1 class="party_title">Raum: {roomname} </h1>
-						<button onClick={event => handleButton2()} className="link_leave">Raum Verlassen</button>
+						<button onClick={event => handleButton2()} className="link_leave" aria-live="polite">Verlassen</button>
 					</div>
-					
 					<div class="links">
 						<input type="text" name="roomname" class="link_box" placeholder="Link einfügen" value={link} onChange={(change) => setLink(change.target.value)}></input>
-						<button onClick={event => handleButton()} className="link_submit">Starten	</button>
+						<button onClick={event => handleButton()} className="link_submit" aria-live="polite">Starten	</button>
 						
 					</div>
 
 					<div>
 						<div class="player">
 							<ReactPlayer
-								width="62%"
-								height="62%"
+								width="70%"
+								height="70%"
 								class='reactplayer'
 								url={url}
-								ref={refPlayer}
 								playing={playing}
 								controls={controls}
 								onReady={() => console.log('onReady')}
 								onStart={() => console.log('onStart')}
 								onPlay={() => handlePlay()}
 								onPause={() => handlePause()}
-								onBuffer={() => handleBuffer()}
+								onBuffer={() => console.log('onBuffer')}
 								onProgress={(pro)=> handleProgress(pro)}
-								progressInterval={3000}
+								onSeek={()=> console.log("UUUU")}
 							/>
+
 						</div>
 					</div>
 
@@ -244,14 +243,14 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 								<p class="user_list">
 									{data.map((user) => (
 										<tr key={user.id}>
-											<td>{'" '+user.name+' "'}</td>
+											<td>{user.name}</td>
 										</tr>
 									))}
 								</p>
 							</div>
 						</div>
 					</div>
-					<div class="chat">
+					<div class="chat" role="log" aria-live="polite">
 						<Chat />
 					</div>
 
