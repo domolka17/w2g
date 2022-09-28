@@ -9,14 +9,15 @@
   height: 5rem;
   font-size: 1.875rem;
   font-weight: bold;
-  background-color: #d0d4ff;
+  background-color: #5e5e5e;
   border-style: outset;
   border-radius: 10px;
+  color: #ffffff;
 
 }
 
 .homescreen_buttons:hover {
-  background-color: #6f79cf;
+  background-color: #AAAAAA;
   font-weight: bold;
   color: #ffffff;
   transition-duration: 300ms;
@@ -78,17 +79,18 @@
     width: 100%;
     font-size: 1.3rem;
     font-weight: bold;
-    background-color: #d0d4ff;
+    background-color: #5e5e5e;
     border-style: outset;
     border-radius: 10px;
+    color: #ffffff;
   
   }
 
   .homescreen_buttons:hover {
-    background-color: #6f79cf;
-    font-weight: bold;
-    color: #ffffff;
-    transition-duration: 300ms;
+    background-color: #AAAAAA;
+  font-weight: bold;
+  color: #ffffff;
+  transition-duration: 300ms;
 
   }
 
