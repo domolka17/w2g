@@ -146,7 +146,7 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 					</div>
 					<div class="links">
 						<input type="text" name="roomname" class="link_box" placeholder="Link einfügen" value={link} onChange={(change) => setLink(change.target.value)}></input>
-						<button onClick={event => handleButton()} className="link_submit" aria-live="polite">Einfügen	</button>
+						<button onClick={event => handleButton()} className="link_submit" aria-live="polite">Starten	</button>
 						
 					</div>
 
