@@ -2,7 +2,7 @@ import hsalogo from "./imgs/hsalogo.png";
 import React from "react";
 import { /*Nav,*/ NavLink/*, NavMenu*/ } from "./NavbarElements";
 import "./css/navbar.css";
-import "./NavbarElements.css";
+import "./css/NavbarElements.css";
 
 
 

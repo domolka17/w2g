@@ -43,10 +43,10 @@ const Home = () => {
 									Gänzliche Bedienbarkeit via Tastatur
 								</li>
 								<li>
-									Farbblindenmodus (Coming Soon™)
+									ScreenReader Unterstützung
 								</li>
 								<li>
-									Text-To-Speech (Coming Soon™)
+									Farbblindenmodus (Coming Soon™)
 								</li>
 								<li>
 									Untertitel (Coming Soon™)
@@ -56,7 +56,7 @@ const Home = () => {
 					</div>
 
 					<div class="buttonContainer">
-						<button onClick={event => handleButton1() } class="homescreen_buttons">Einen Raum erstellen</button>
+						<button onClick={event => handleButton1() } class="homescreen_buttons" >Einen Raum erstellen</button>
 						<button onClick={event => handleButton2()} class="homescreen_buttons">Einen Raum beitreten</button>
 					</div>
 					

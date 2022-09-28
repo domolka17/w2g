@@ -1,47 +1,58 @@
 .link_submit {
-  width: 25%;
-  height: 3.4rem;
-  font-size: 1.875rem;
+  width: 15%;
+  height: 2.1rem;
+  font-size: 1.3rem;
   font-weight: bold;
-  background-color: #d0d4ff;
+  background-color: #5e5e5e;
   border-style: outset;
   border-radius: 10px;
+  margin-left: 1rem;
+  color: #ffffff;
  
   
 }
 
 .link_leave {
-  width: 25%;
-  height: 3.4rem;
-  font-size: 1.875rem;
+  width: 12%;
+  height: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
-  background-color: #d0d4ff;
+  background-color: #5e5e5e;
   border-style: outset;
   border-radius: 10px;
-  margin-left: 1.875rem;
+  margin-left: 1rem;
+  color: #ffffff;
   
 
 }
 
 .link_leave:hover {
-  background-color: #6f79cf;
+  background-color: #AAAAAA;
   font-weight: bold;
   color: #ffffff;
   transition-duration: 300ms;
 }
 
 .link_submit:hover {
-  background-color: #6f79cf;
+  background-color: #AAAAAA; 
   font-weight: bold;
   color: #ffffff;
   transition-duration: 300ms;
 
 }
+/*
+buttons:
+#6f79cf highlight
+#d0d4ff normal 
 
+hintergrund:
+
+*/
 .partytitle_text {
   color: #ffffff;
   display: flex;
-  margin:1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
   display: flex;
   align-items: center;
   
@@ -61,28 +72,27 @@
 .party_title {
   display: flex;
   color: #ffffff;
-  font-size: 1.563rem;
+  font-size: 1.3rem;
   justify-content: center;
 
 }
 
 .links {
   display: flex;
-  justify-content: space-between;
   align-content: center;
-  margin-top: 1.3rem;
   margin-left: 2.4rem;
   margin-right: 2.4rem;
 }
 
 .link_box {
   width: 70%;
-  height: 3rem;
-  font-size: 1.3rem;
+  height: 1.7rem;
+  font-size: 1rem;
   font-weight: bold;
-  background-color: #d0d4ff;
+  background-color: #AAAAAA;
   border-style: outset;
   border-radius: 10px;
+  color: #ffffff;
 }
 
 .users {
@@ -110,7 +120,7 @@
   margin-left: 2.4rem;
   margin-bottom: 2.4rem;
   margin-right: 2.4rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   position: relative;
   padding-top: 56.25%; /* 720 / 1280 = 0.5625 */
 }
@@ -123,36 +133,35 @@
 }
 
 .chat{
-  display: flex;
-  justify-content: flex-start;
   margin: 2.4rem;
-  position: relative;
+  
 }
 
 .user_box{
-  margin-top: -20%;
+  margin-top: -18%;
 }
 
 @media screen and (max-width: 960px) {
 
   .link_submit {
-    width: 25%;
-    height: 3.4rem;
-    font-size: 1.3rem;
+    width: 30%;
+    height: 2.1rem;
+    font-size: 0.8rem;
     font-weight: bold;
-    background-color: #d0d4ff;
+    background-color: #5e5e5e;
     border-style: outset;
     border-radius: 10px;
+    margin-left: 1rem;
    
     
   }
   
   .link_leave {
-    width: 25%;
-    height: 3.4rem;
-    font-size: 1.3rem;
+    width: 30%;
+    height: 2rem;
+    font-size: 0.8rem;
     font-weight: bold;
-    background-color: #d0d4ff;
+    background-color: #5e5e5e;
     border-style: outset;
     border-radius: 10px;
     
@@ -161,14 +170,14 @@
   }
   
   .link_leave:hover {
-    background-color: #6f79cf;
+    background-color: #AAAAAA;
     font-weight: bold;
     color: #ffffff;
     transition-duration: 300ms;
   }
   
   .link_submit:hover {
-    background-color: #6f79cf;
+    background-color: #AAAAAA;
     font-weight: bold;
     color: #ffffff;
     transition-duration: 300ms;
@@ -178,7 +187,8 @@
   .partytitle_text {
     color: #ffffff;
     display: flex;
-    margin:1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
     display: flex;
     align-items: center;
     
@@ -198,7 +208,7 @@
   .party_title {
     display: flex;
     color: #ffffff;
-    font-size: 1.3rem;
+    font-size: 0.8rem;
     justify-content: center;
   
   }
@@ -206,25 +216,25 @@
   .links {
     display: flex;
     align-content: center;
-    margin-top: 1.3rem;
     margin-left: 2.4rem;
     margin-right: 2.4rem;
   }
   
   .link_box {
     width: 70%;
-    height: 3rem;
-    font-size: 1.3rem;
+    height: 1.7rem;
+    font-size: 0.8rem;
     font-weight: bold;
-    background-color: #d0d4ff;
+    background-color: #AAAAAA;
     border-style: outset;
     border-radius: 10px;
+    color: #ffffff;
   }
   
   .users {
     display: flex;
     color: #ffffff;
-    font-size: 1.25rem;
+    font-size: 0.8rem;
     font-weight: bold;
     justify-content: flex-start;
     margin-left: 2.4rem;
@@ -234,7 +244,7 @@
   .user_list {
     display: flex;
     color: #ffffff;
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: bold;
     justify-content: flex-start;
     margin-left: 2.4rem;
@@ -246,7 +256,7 @@
     margin-left: 2.4rem;
     margin-bottom: 2.4rem;
     margin-right: 2.4rem;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     position: relative;
     padding-top: 56.25%; /* 720 / 1280 = 0.5625 */
   }
@@ -259,15 +269,10 @@
   }
   
   .chat{
-    display: flex;
-    font-size: 1.25rem;
-    font-weight: bold;
-    justify-content: flex-start;
     margin: 2.4rem;
-    position: relative;
   }
   
   .user_box{
-    margin-top: -20%;
+    margin-top: -18%;
   }
 }

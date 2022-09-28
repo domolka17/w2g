@@ -3,55 +3,82 @@
 }
 
 .messageBox {
-    color: #fff;
+    color: #ffffff;
     overflow-y: scroll;
     overflow-wrap: break-word;
-    width: 110% ;
-    height: 20%;
+    width: 57rem;
+    height: 25rem;
     margin-left: -2.5rem;
+    font-weight: bold;
 }
-.ChatSubmitbar{
+
+.ChatSubmitbar {
     margin-top: 1rem;
 }
-.message_submit{
-    width: 60%;
-    height: 3rem;
-    font-size: 1.3rem;
-    font-weight: bold;
+
+.message_submit {
+    width: 46rem;
+    height: 1.7rem;
+    font-size: 1rem;
+    font-weight: bold;  
 }
-.message_submit_button{
-    height: 3.4rem;
-    width: 28%;
+
+.message_submit_button {
+    height: 2rem;
+    width: 8rem;
     font-size: 1.3rem;
     font-weight: bold;
+    background-color: #AAAAAA;
+    color: #ffffff;
+}
+
+.message_submit_button:hover {
+    background-color: #5e5e5e;
+    font-weight: bold;
+    color: #ffffff;
+    transition-duration: 300ms;
 }
 
 @media screen and (max-width: 960px) {
 
+    .Chatbox {
+        overflow-wrap: break-word;
+    }
+
     .messageBox {
-        color: #fff;
+        color: #ffffff;
         overflow-y: scroll;
         overflow-wrap: break-word;
-        width: 50% ;
-        height: 20%;
+        width: 24rem;
+        height: 25rem;
         margin-left: -2.5rem;
+        font-weight: bold;
     }
-    .ChatSubmitbar{
+
+    .ChatSubmitbar {
         margin-top: 1rem;
-        overflow-wrap: break-word;
     }
-    .message_submit{
-        width: 30%;
-        height: 3rem;
-        font-size: 1.3rem;
+
+    .message_submit {
+        width: 13rem;
+        height: 1.7rem;
+        font-size: 0.8rem;
         font-weight: bold;
-        overflow-wrap: break-word;
     }
-    .message_submit_button{
-        height: 3.4rem;
-        width: 20%;
-        font-size: 1.3rem;
+
+    .message_submit_button {
+        height: 2rem;
+        width: 4rem;
+        font-size: 0.8rem;
         font-weight: bold;
-        overflow-wrap: break-word;
+        background-color: #AAAAAA;
+        color: #ffffff;
+    }
+
+    .message_submit_button:hover {
+        background-color: #5e5e5e;
+        font-weight: bold;
+        color: #ffffff;
+        transition-duration: 300ms;
     }
 }
