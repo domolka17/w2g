@@ -125,9 +125,13 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 		}
 	}
 	// check leader 
+
+	const [roomLeaderName, setRoomLeaderName] = useState('')
+
 	const checkLeader=()=> {
 		let user = data[0]
 		console.log(user.name)
+		setRoomLeaderName(data[0].name)
 		if(user.name==sessionStorage.getItem('name')){
 			setRoomleader(true)
 		}
@@ -201,6 +205,7 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 
 	}
 
+
 	return (
 		<>
 			<body class="home">
@@ -208,6 +213,8 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 					<div class="partytitle_text">
 						<h1 class="party_title">Raum: {roomname} </h1>
 						<button onClick={event => handleButton2()} className="link_leave" aria-live="polite">Verlassen</button>
+						<h1 class="party_title">Party-Leader: {roomLeaderName} </h1>
+						<h1 class="party_title">Raumlink: https://domolka17.github.io/#/Watchparty/{roomname} </h1>
 					</div>
 					<div class="links">
 						<input type="text" name="roomname" class="link_box" placeholder="Link einfügen" value={link} onChange={(change) => setLink(change.target.value)}></input>

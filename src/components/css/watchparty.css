@@ -191,6 +191,7 @@ hintergrund:
     margin-right: 1rem;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     
   
   
