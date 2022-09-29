@@ -7,22 +7,38 @@ import { createRoom, joinRoom } from './Controller/RoomController';
 const UserCreatrSide = () => {
     const [inp, setInput] = useState('')
     const navigate = useNavigate()
-    const redirect = sessionStorage.getItem('redirect')
+    const [check, setCheck]=useState()
+    const [redirect, setRedirect]=useState(sessionStorage.getItem('redirect'))
+    const [find, setFind]=useState([])
+    const [rooms, setrooms]=useState([])
     
 
     useEffect(()=>{
-		checker()
-    }, []);
+       if(redirect==undefined){
+        setRedirect(sessionStorage.getItem('redirect'))
+       }
+       else{
+        console.log(redirect)
+        getRooms()
+       }
+    }, [redirect]);
 
+
+    useEffect(()=>{
+        console.log(find)
+        setCheck(checker())
+    },[find])
+
+    
 
 
     const  handleButton =  () => {		// gives button its funktion
-		
+
         if(sessionStorage.getItem('redirect')!=null){
             sessionStorage.removeItem('redirect');
 
             // triggers when room is available
-            if(checker()==true){
+            if(check==true){
                 createUser(inp)
                 setTimeout(function () {
                     joinRoom(redirect)
@@ -52,23 +68,35 @@ const UserCreatrSide = () => {
     }
 
     const checker=()=>{
-        var find = []
+        if(find == undefined)
+        {
+            console.log(false)
+            return false
+        }
+        else{
+            console.log(true)
+            return true
+        }
+    }
+
+    const finder=()=>{
+        let temp 
+        temp = rooms.find((item)=>{
+            return item.name == redirect
+            })
+            return temp
+        }
+        
+    const getRooms=()=>{
         fetch('https://gruppe13.toni-barth.com/rooms/')
           .then((res) =>
         res.json())
           .then((response) => {
-           find= response.roomsfind((item)=>{
-            return item.name == redirect
-            })
-         })
-        if(find == undefined)
-        {
-            return false
-        }
-        else{
-            return true
-        }
+            console.log(response.rooms)
+            setrooms(response.rooms)
+         }).then(finder())
     }
+        
 
   return (
     <>
