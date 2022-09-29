@@ -46,7 +46,7 @@ const Home = () => {
 									ScreenReader Unterstützung
 								</li>
 								<li>
-									Farbblindenmodus (Coming Soon™)
+									Yeet-To-Speech (Coming Soon™)
 								</li>
 								<li>
 									Untertitel (Coming Soon™)

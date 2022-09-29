@@ -7,7 +7,6 @@ import Home from './components/Startseite';
 import About from './components/about';
 import Help from './components/Help';
 import Room from './components/Room';
-import Host from "./components/Host";
 import Watchparty from "./components/Watchparty";
 import { leaveRoom } from "./components/Controller/RoomController";
 import UserCreatrSide from "./components/UserCreateSide";
@@ -23,26 +22,26 @@ function App() {
       window.removeEventListener('beforeunload', alertUser)
       window.removeEventListener('unload', handleTabClosing)
     }
-})
-const handleTabClosing = () => {
-  logOut(sessionStorage.getItem('id'))
-}
-const alertUser = (event) => {
-  event.preventDefault()
-  event.returnValue = ''
-  // not lösung, nutzer werden sonst nie gelöscht bei verlassen der Seite
-  leaveRoom( sessionStorage.getItem('roomname'))
-  logOut(sessionStorage.getItem('id'))
-}
-const logOut = (id)=>{
-  const url = 'https://gruppe13.toni-barth.com/users/'
-  fetch(url+ id, {
-    method:'DELETE', headers:{"Content-Type": "application/json"}
-  }).then(sessionStorage.clear())
-}
+  })
+  const handleTabClosing = () => {
+    logOut(sessionStorage.getItem('id'))
+  }
+  const alertUser = (event) => {
+    event.preventDefault()
+    event.returnValue = ''
+    // not lösung, nutzer werden sonst nie gelöscht bei verlassen der Seite
+    leaveRoom(sessionStorage.getItem('roomname'))
+    logOut(sessionStorage.getItem('id'))
+  }
+  const logOut = (id) => {
+    const url = 'https://gruppe13.toni-barth.com/users/'
+    fetch(url + id, {
+      method: 'DELETE', headers: { "Content-Type": "application/json" }
+    }).then(sessionStorage.clear())
+  }
   return (
     <HashRouter>
-    <Navbar />
+      <Navbar />
       <Routes>
         <Route exact path='/' element={<Home />} />
         <Route exact path='/index' element={<Home />} />
@@ -54,7 +53,7 @@ const logOut = (id)=>{
         <Route exact path="/Chat" element={<Chat />} />
         <Route exact path="*" element={<NotFound />} />
       </Routes>
-  </HashRouter >
+    </HashRouter >
   );
 }
 

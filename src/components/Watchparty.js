@@ -229,9 +229,9 @@ const Watchparty = () => {		// room siplay with userlist of rpp
 								height="70%"
 								class='reactplayer'
 								url={url}
+								ref={refPlayer}
 								playing={playing}
 								controls={controls}
-								ref={refPlayer}
 								onReady={() => console.log('onReady')}
 								onStart={() => console.log('onStart')}
 								onPlay={() => handlePlay()}
