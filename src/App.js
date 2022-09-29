@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import './App.css';
+import './components/css/App.css';
 import './components/css/navbar.css'
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
