@@ -7,22 +7,34 @@ import { createRoom, joinRoom } from './Controller/RoomController';
 const UserCreatrSide = () => {
     const [inp, setInput] = useState('')
     const navigate = useNavigate()
-    const redirect = sessionStorage.getItem('redirect')
+    const [check, setCheck]=useState()
+    const [redirect, setRedirect]=useState(sessionStorage.getItem('redirect'))
+    const [find, setFind]=useState([])
     
 
     useEffect(()=>{
-		checker()
-    }, []);
+       if(redirect==undefined){
+        setRedirect(sessionStorage.getItem('redirect'))
+       }
+       else{
+        console.log(redirect)
+        setFind(finder)
+       }
+    }, [redirect]);
+
+    useEffect(()=>{
+        console.log(find)
+    },[find])
 
 
 
     const  handleButton =  () => {		// gives button its funktion
-		
+
         if(sessionStorage.getItem('redirect')!=null){
             sessionStorage.removeItem('redirect');
 
             // triggers when room is available
-            if(checker()==true){
+            if(check==true){
                 createUser(inp)
                 setTimeout(function () {
                     joinRoom(redirect)
@@ -52,15 +64,6 @@ const UserCreatrSide = () => {
     }
 
     const checker=()=>{
-        var find = []
-        fetch('https://gruppe13.toni-barth.com/rooms/')
-          .then((res) =>
-        res.json())
-          .then((response) => {
-           find= response.roomsfind((item)=>{
-            return item.name == redirect
-            })
-         })
         if(find == undefined)
         {
             return false
@@ -68,6 +71,19 @@ const UserCreatrSide = () => {
         else{
             return true
         }
+    }
+
+    const finder=()=>{
+        let temp 
+        fetch('https://gruppe13.toni-barth.com/rooms/')
+          .then((res) =>
+        res.json())
+          .then((response) => {
+           temp = response.rooms.find((item)=>{
+            return item.name == redirect
+            })
+         })
+        return temp
     }
 
   return (
