@@ -10,6 +10,7 @@ const UserCreatrSide = () => {
     const [check, setCheck]=useState()
     const [redirect, setRedirect]=useState(sessionStorage.getItem('redirect'))
     const [find, setFind]=useState([])
+    const [rooms, setrooms]=useState([])
     
 
     useEffect(()=>{
@@ -18,14 +19,17 @@ const UserCreatrSide = () => {
        }
        else{
         console.log(redirect)
-        setFind(finder)
+        getRooms()
        }
     }, [redirect]);
 
+
     useEffect(()=>{
         console.log(find)
+        setCheck(checker())
     },[find])
 
+    
 
 
     const  handleButton =  () => {		// gives button its funktion
@@ -66,25 +70,33 @@ const UserCreatrSide = () => {
     const checker=()=>{
         if(find == undefined)
         {
+            console.log(false)
             return false
         }
         else{
+            console.log(true)
             return true
         }
     }
 
     const finder=()=>{
         let temp 
+        temp = rooms.find((item)=>{
+            return item.name == redirect
+            })
+            return temp
+        }
+        
+    const getRooms=()=>{
         fetch('https://gruppe13.toni-barth.com/rooms/')
           .then((res) =>
         res.json())
           .then((response) => {
-           temp = response.rooms.find((item)=>{
-            return item.name == redirect
-            })
-         })
-        return temp
+            console.log(response.rooms)
+            setrooms(response.rooms)
+         }).then(finder())
     }
+        
 
   return (
     <>

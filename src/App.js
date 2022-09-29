@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import './App.css';
 import './components/css/navbar.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/Startseite';
 import About from './components/about';
@@ -41,21 +41,20 @@ const logOut = (id)=>{
   }).then(sessionStorage.clear())
 }
   return (
-    <Router>
-      <Navbar />
+    <HashRouter>
+    <Navbar />
       <Routes>
         <Route exact path='/' element={<Home />} />
-        <Route path='/index' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/Help' element={<Help />} />
-        <Route path="/Room" element={<Room/>}/>
-        <Route path="/Host" element={<Host/>}/>
-        <Route path="/Watchparty/:roomid" element={<Watchparty/>}/>
-        <Route path="/UserCreateSide" element={<UserCreatrSide/>}/>
-        <Route path="/Chat" element={<Chat/>}/>
-        <Route path="*" element={<NotFound/> }/>     
+        <Route exact path='/index' element={<Home />} />
+        <Route exact path='/about' element={<About />} />
+        <Route exact path='/Help' element={<Help />} />
+        <Route exact path="/Room" element={<Room />} />
+        <Route exact path="/Watchparty/:roomid" element={<Watchparty />} />
+        <Route exact path="/UserCreateSide" element={<UserCreatrSide />} />
+        <Route exact path="/Chat" element={<Chat />} />
+        <Route exact path="*" element={<NotFound />} />
       </Routes>
-    </Router>
+  </HashRouter >
   );
 }
 
