@@ -41,21 +41,21 @@ const logOut = (id)=>{
   }).then(sessionStorage.clear())
 }
   return (
-    <Router>
+    <HashRouter>
       <Navbar />
-      <Routes>
-        <Route exact path='/' element={<Home />} />
-        <Route path='/index' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/Help' element={<Help />} />
-        <Route path="/Room" element={<Room/>}/>
-        <Route path="/Host" element={<Host/>}/>
-        <Route path="/Watchparty/:roomid" element={<Watchparty/>}/>
-        <Route path="/UserCreateSide" element={<UserCreatrSide/>}/>
-        <Route path="/Chat" element={<Chat/>}/>
-        <Route path="*" element={<NotFound/> }/>     
-      </Routes>
-    </Router>
+        <Routes>
+          <Route exact path='/' element={<Home />} />
+          <Route exact path='/index' element={<Home />} />
+          <Route exact path='/about' element={<About />} />
+          <Route exact path='/Help' element={<Help />} />
+          <Route exact path="/Room" element={<Room />} />
+          <Route exact path="/Host" element={<Host />} />
+          <Route exact path="/Watchparty/:roomid" element={<Watchparty />} />
+          <Route exact path="/UserCreateSide" element={<UserCreatrSide />} />
+          <Route exact path="/Chat" element={<Chat />} />
+          <Route exact path="*" element={<NotFound />} />
+        </Routes>
+    </HashRouter >
   );
 }
 
